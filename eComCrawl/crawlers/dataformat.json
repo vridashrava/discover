@@ -1,0 +1,36 @@
+{
+    "shopclues":{
+        "data_xpaths":{
+            "item_title":"//div[@id='main_data']/div[@class='prd_mid_info']/h1[@itemprop='name']",
+            "item_id":"",
+            "description":"",
+            "item_image":"//img[@id='zoom_picture_gall']"
+
+            },
+        "listing_xpath":"",
+        "listing_data_xpaths":{
+            "url":"",
+            "image":"",
+            "price":"",
+            "rating":"",
+            "descrition":""
+        },
+        "pagination": {
+            "type":"infinite",
+            "ticks":"",
+            "show_all_button_xpath":"//div[@class='load_more']/a[@id='moreProduct']"
+        },
+        "categories_url":"",
+        "category_data_xpath":"//",
+        "subcategory":"",
+        "category": {
+            "https://www.myntra.com/":{
+                "categories":["Men","Women","Kids","Home & Living"],
+                ""
+            "http://www.shopclues.com":["Men","Women","Kids","Home & Kitchen","Sports & More","Mobiles","Electronics"],
+            "http://www.jabong.com":["MEN","WOMEN","KIDS","ACCESSORIES","SPORTS","BRANDS"],
+            "https://www.tatacliq.com/":["Women's Clothing"]
+            }
+        }
+        }
+}

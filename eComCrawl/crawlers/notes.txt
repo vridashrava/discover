@@ -1,0 +1,9 @@
+Shopclues encapsulates html within fake html layout
+myntra has step by step scrolling pagination
+Jabong has step scrolling.
+Need to list data in table
+Postprocessing, Preprocessing control
+Categorical crawler monitoring (milestone 2)
+DB to mongo,
+Politeness of 5 sec
+pagination
