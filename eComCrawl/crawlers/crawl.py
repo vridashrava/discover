@@ -16,13 +16,13 @@ from crawlers.db import DB
 from crawlers.docprocessing import json_formatting
 import logging
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-from pyvirtualdisplay import Display
+# from pyvirtualdisplay import Display
 # data_fields = json.load(open(os.path.join(BASE_DIR,"dataformat.json"),'r+'))
 
 class selenium_getdata:
     def __init__(self):
         self.url = ""
-        self.display = Display(visible=0,size=(1024,768))
+        # self.display = Display(visible=0,size=(1024,768))
         # self.driver = webdriver.Remote(command_executor="http://198.58.124.206:4444/wd/hub",desired_capabilities=DesiredCapabilities.CHROME)
         self.driver = webdriver.Chrome("/home/ashmit/chromedriver")
         self.driver.set_page_load_timeout(45)
@@ -120,11 +120,11 @@ class selenium_getdata:
                 logging.warning("Crawling Aborted "+listing_dict['url']+" because of "+str(e))
             try:
                 final_data = json_formatting(final_data,self.website_name)
-                db.insert_data(db_cursor,final_data)
                 if final_data!={}:
-                    logging.info("Crawling Completed"+listing_dict['url'])
+                    db.insert_data(db_cursor,final_data)
+                    logging.info("Crawling Completed "+listing_dict['url'])
             except:
-                logging.warning("Website data not inserted in Mongo from page" + str(final_data['url']))
+                logging.warning("Website data not inserted in Mongo from page " + str(final_data['url']))
                 time.sleep(2)
         # if items_dict['approach'] == 'click':
         #     action = ActionChains(self.driver)
@@ -225,4 +225,4 @@ class selenium_getdata:
             logging.warning("Error closing window, Forcing shut down")
             self.driver.close()
             self.driver.quit()
-        self.display.stop()
+        # self.display.stop()

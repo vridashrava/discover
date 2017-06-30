@@ -1,0 +1,97 @@
+{
+    "http://www.shopclues.com/":{
+                "categories":["Men","Women","Baby & Kids","Home & Kitchen","Sports & More","Mobiles","Electronics"],
+                "hover":true,
+                "type":"category",
+                "pagination":{
+                    "type":"step_scroll",
+                    "paginate_parameters" :{
+                        "scroll_time_wait":5,
+                        "load_more_xpath":"//a[@id='moreProduct']",
+                        "products_path_count":"//div[@id='product_list']/div[@class='product_found']/span",
+                        "page_listing":44
+                    }
+                },
+                "items":{
+                    "xpath2":"//div[@id='product_list']/div[@id='new_list']/div[@class='row']/div[starts-with(@class,'column col')]",
+                    "click_xpath2":"//div[@id='product_list']/div[@id='new_list']/div[@class='row']/div[starts-with(@class,'column col')]",
+                    "xpath":"//div[@id='product_list']/div[@class='row']/div[starts-with(@class,'column col')]",
+                    "click_xpath":"//div[@id='product_list']/div[@class='row']/div[starts-with(@class,'column col')]",
+                    "approach":"click",
+                    "fields":{
+                        "listing":{
+                            "product_title":{
+                                "xpath":"//a[@target='_blank']/h3",
+                                "xpath_type":"text"
+                            },
+                            "price":{
+                                "xpath":"//div[@class='prd_p_section']/div[@class='ori_price']/span[@class='p_price']",
+                                "xpath_type":"text"
+                            },
+                            "url":{
+                                "xpath":"//a[@target='_blank']/@href",
+                                "xpath_type":"href"
+                            },
+                            "selling_price":{
+                                "xpath":"//div[@class='prd_p_section']/div[@class='ori_price']/span[@class='prd_discount']",
+                                "xpath_type":"text"
+                            }
+                        },
+                        "product":{
+                            "product_id":{
+                                "xpath":"//div[@class='prd_mid_info']/span[@class='pID']",
+                                "xpath_type":"text"
+                            },
+                            "description":{
+                                "xpath":"//div[@id='product_description']/p",
+                                "xpath_type":"text"
+                            },
+                            "selling_price":{
+                                "xpath":"//div[@class='prd_mid_info']/div[@class='price']/span[@class='f_price']/@content",
+                                "xpath_type":"attr"
+                            },
+                            "discount":{
+                                "xpath":"//div[@class='prd_mid_info']/div[@class='price']/span[@class='discount']",
+                                "xpath_type":"text"
+                            },
+                            "images":{
+                                "xpath":"//div[@class='slick-track']/li[starts-with(@class,'slick-slide slick')]/a/@data-image",
+                                "xpath_type":"image"
+                            },
+                            "rating":{
+                                "xpath":"//div[@class='rnr_details']/div[@class='rnr_graph']/div[@class='star_rating_point']/span",
+                                "xpath_type":"text"
+                            },
+                            "mrp":{
+                                "xpath":"//div[@class='prd_mid_info']/div[@class='price']/span[@class='o_price1']",
+                                "xpath_type":"text"
+                            },
+                            "shipping_charge":{
+                                "xpath":"//ul[@id='delDetails']/li[@id='shippingcharge']/span[@id='shipcharge']",
+                                "xpath_type":"text"
+                            },
+                            "delivery_time": {
+                                "xpath":"//ul[@id='delDetails']/li[@id='del_time']/span[@id='delivery']",
+                                "xpath_type":"text"
+                            },
+                            "sizes":{
+                                "xpath":"//div[@class='f_variation']/ul/li/span[@class='variant']/text()",
+                                "xpath_type":"list"
+                            },
+                            "specifications":{
+                                "xpath":"//div[@id='specification']/table/tbody",
+                                "xpath_type":"html"
+                            },
+                            "color":{
+                                "xpath":"//div[@class='des_info']/ul/li[3]",
+                                "xpath_type":"text"
+                            },
+                            "breadcrumb":{
+                                "xpath":"//div[@class='breadcrums']",
+                                "xpath_type":"html"
+                            }
+                }
+            }
+        }
+    }
+}

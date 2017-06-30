@@ -24,5 +24,15 @@ class DB(object):
 		except Exception as e:
 			print ("Error",e)
 		return query_data
+	def replace_cateogrical_data(self,cursor,url,data_dict):
+		value = ""
+		try:
+			value = cursor.find_one_and_replace({url:{'$exists':True}},data_dict)
+			if not value:
+				self.insert_data(cursor,data_dict)
+		except Exception as e:
+			print ("Error",e)
+		return
+
 
 

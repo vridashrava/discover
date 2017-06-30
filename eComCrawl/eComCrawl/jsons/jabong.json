@@ -1,0 +1,74 @@
+{
+    "http://www.jabong.com/":{
+                "categories":["MEN","WOMEN","KIDS","ACCESSORIES","SPORTS"],
+                "hover":true,
+                "type":"category",
+                "pagination":{
+                    "type":"infinite_scroll",
+                    "paginate_parameters" :{
+                        "scroll_time_wait":5,
+                        "products_path_count":"//div[@class='col-sm-6 col-md-9 col-lg-9 catalog-info-wrap']/div[@class='catalog-product-info']/span[@class='product-count']",
+                        "page_listing":52
+                    }
+                },
+                "items":{
+                    "xpath":"//section[@class='row search-product animate-products']/div[@class='col-xxs-6 col-xs-4 col-sm-4 col-md-3 col-lg-3 product-tile img-responsive']",
+                    "click_xpath":"//section[@class='row search-product animate-products']/div[@class='col-xxs-6 col-xs-4 col-sm-4 col-md-3 col-lg-3 product-tile img-responsive']/a/figure[@class='catalog-img']",
+                    "approach":"click",
+                    "fields": {
+                        "listing":{
+                            "product_title":{
+                                "xpath":"//div[@class='product-info']/div[@class='h4']",
+                                "xpath_type":"text"
+                            },
+                            "price":{
+                                "xpath":"//div[@class='price']/span[@class='standard-price']",
+                                "xpath_type":"text"
+                            },
+                            "url":{
+                                "xpath":"//a/@href",
+                                "xpath_type":"href"
+                            }
+                        },
+                        "product":{
+                            "product_brand":{
+                                "xpath":"//div[@class='content']/h1/span[@class='brand']",
+                                "xpath_type":"text"
+                            },
+                            "product_name":{
+                                "xpath":"//div[@class='content']/h1/span[@class='product-title']",
+                                "xpath_type":"text"
+                            },
+                            "selling_price":{
+                                "xpath":"//div[@class='content']/div/div[@class='price discounts']/span[@class='actual-price']",
+                                "xpath_type":"text"
+                            },
+                            "mrp":{
+                                "xpath":"//div[@class='content']/div/div[@class='price discounts']/span[@class='standard-price ']",
+                                "xpath_type":"text"
+                            },
+                            "discount":{
+                                "xpath":"//div[@class='content']/div/div[@class='price discounts']/span[@class='discount productDiscount']",
+                                "xpath_type":"text"
+                            },
+                            "images":{
+                                "xpath":"//div[starts-with(@class,'slide slick-slide')]/img/@src",
+                                "xpath_type":"image"
+                            },
+                            "description":{
+                                "xpath":"//div[@id='productInfo']/section[@class='prod-info']/div[@class='detail']",
+                                "xpath_type":"text"
+                            },
+                            "breadcrumb":{
+                                "xpath":"//ol[@class='breadcrumb']",
+                                "xpath_type":"html"
+                            },
+                            "specifications":{
+                                "xpath":"//section[@class='prod-info']/ul[@class='prod-main-wrapper']",
+                                "xpath_type":"html"
+                            }
+                        }
+                    }
+                }
+                }
+}

@@ -1,0 +1,76 @@
+{
+    "https://www.myntra.com/":{
+        "categories":["Men","Women","Kids","Home & Living"],
+        "hover":true,
+        "type":"category",
+        "pagination":{
+            "type":"re-request",
+            "paginate_parameters" :{
+                "scroll_time_wait":5,
+                "load_more_xpath":"//div[@class='results-showMoreContainer']/div[@class='results-showmore'][contains(text(),'Show More')]",
+                "products_path_count":"//div[@class='horizontal-filters-sortContainer']/div[@class='horizontal-filters-searchInfo']/span[@class='horizontal-filters-sub']",
+                "page_listing":48,
+                "re_request_url":"&f=&p=1&rows=500"
+            }   
+        },
+        "items":{
+            "xpath":"//section/ul[@class='results-base']/li[@class='product-base']",
+            "click_xpath":"//ul[@class='results-base']/li[@class='product-base']",
+            "approach":"click",
+            "fields":{
+                "listing":{
+                    "product_title":{
+                        "xpath":"//a/div[@class='product-productMetaInfo']/h2[@class='product-product']",
+                        "xpath_type":"text"
+                    },
+                    "url":{
+                        "xpath":"//a/@href",
+                        "xpath_type":"href"
+                    },
+                    "price":{
+                        "xpath":"//div[@class='product-price']/span/span[@class='product-discountedPrice']",
+                        "xpath_type":"text"
+                    }
+                },
+                "product":{
+                    "product_name":{
+                        "xpath":"//div[@class='pdp-description-container']/div[@class='pdp-price-info']/h1[@class='pdp-title']",
+                        "xpath_type":"text"
+                    },
+                    "selling_price":{
+                        "xpath":"//div[@class='pdp-description-container']/div[@class='pdp-price-info']/p[@class='pdp-selling-price']/strong[@class='pdp-price']",
+                        "xpath_type":"text"
+                    },
+                    "description":{
+                        "xpath":"//div[@class='pdp-productDescriptorsContainer']/div/p[@class='pdp-product-description-content']",
+                        "xpath_type":"text"
+                    },
+                    "product_id":{
+                        "xpath":"//div[@class='pdp-image-container']/div[@class='supplier-product-code-and-supplier supplier-desktopCodeSupplier']/span[@class='supplier-product-code']",
+                        "xpath_type":"text"
+                    },
+                    "images":{
+                        "xpath":"//div[@class='desktop-image-zoom-content']/div[@class='desktop-image-zoom-image-container']/img/@src",
+                        "xpath_type":"image"
+                    },
+                    "mrp":{
+                        "xpath":"//div[@class='pdp-description-container']/div[@class='pdp-price-info']/p[@class='pdp-discount-container']/s",
+                        "xpath_type":"text"
+                    },
+                    "material":{
+                        "xpath":"//div[@class='pdp-description-container']/div[@class='pdp-productDescriptorsContainer']/div/p[@class='pdp-product-description-content']",
+                        "xpath_type":"text"
+                    },
+                    "sizes":{
+                        "xpath":"//div[@class='size-buttons-size-buttons']/button[@class='size-buttons-size-button size-buttons-size-button-default']/p[@class='size-buttons-unified-size']/text()",
+                        "xpath_type":"list"
+                    },
+                    "breadcrumb":{
+                        "xpath":"//div[@class='breadcrumbs-container']",
+                        "xpath_type":"html"
+                    }
+                }   
+            }
+        }
+    }
+}

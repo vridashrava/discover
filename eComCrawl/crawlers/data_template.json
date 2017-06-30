@@ -75,7 +75,7 @@
                 }
                 },
             "http://www.shopclues.com":{
-                "categories":["Men","Women","Kids","Home & Kitchen","Sports & More","Mobiles","Electronics"],
+                "categories":["Men","Women","Baby & Kids","Home & Kitchen","Sports & More","Mobiles","Electronics"],
                 "hover":true,
                 "type":"category",
                 "pagination":{
@@ -170,7 +170,7 @@
                 }
                 },
             "http://www.jabong.com":{
-                "categories":["MEN","WOMEN","KIDS","ACCESSORIES","SPORTS","BRANDS"],
+                "categories":["MEN","WOMEN","KIDS","ACCESSORIES","SPORTS"],
                 "hover":true,
                 "type":"category",
                 "pagination":{
