@@ -14,7 +14,7 @@ from collections import defaultdict
 import urllib
 from crawlers.db import DB
 from crawlers.docprocessing import json_formatting
-import logging
+import logging,datetime
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 from pyvirtualdisplay import Display
 # data_fields = json.load(open(os.path.join(BASE_DIR,"dataformat.json"),'r+'))
@@ -122,6 +122,7 @@ class selenium_getdata:
             try:
                 final_data = json_formatting(final_data,self.website_name)
                 if final_data!={}:
+                    final_data['crawled_date'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     db.insert_data(db_cursor,final_data)
                     logging.info("Crawling Completed "+listing_dict['url'])
             except:
