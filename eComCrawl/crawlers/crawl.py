@@ -22,9 +22,10 @@ from pyvirtualdisplay import Display
 class selenium_getdata:
     def __init__(self):
         self.url = ""
-        # self.display = Display(visible=0,size=(1024,768))
-        # self.display.start()
-        self.driver = webdriver.Remote(command_executor="http://198.58.124.206:4444/wd/hub",desired_capabilities=DesiredCapabilities.PHANTOMJS)
+        self.display = Display(visible=0,size=(1024,768))
+        self.display.start()
+        # self.driver = webdriver.Remote(command_executor="http://198.58.124.206:4444/wd/hub",desired_capabilities=DesiredCapabilities.PHANTOM)
+        self.driver = webdriver.Chrome("/home/ashmitb/p3env/chromedriver")
         self.driver.set_page_load_timeout(45)
 
     def __call__(self,url):
@@ -225,4 +226,4 @@ class selenium_getdata:
             logging.warning("Error closing window, Forcing shut down")
             self.driver.close()
             self.driver.quit()
-        # self.display.stop()
+        self.display.stop()
