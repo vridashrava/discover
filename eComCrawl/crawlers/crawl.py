@@ -16,7 +16,7 @@ from crawlers.db import DB
 from crawlers.docprocessing import json_formatting
 import logging
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-# from pyvirtualdisplay import Display
+from pyvirtualdisplay import Display
 # data_fields = json.load(open(os.path.join(BASE_DIR,"dataformat.json"),'r+'))
 
 class selenium_getdata:
@@ -225,4 +225,4 @@ class selenium_getdata:
             logging.warning("Error closing window, Forcing shut down")
             self.driver.close()
             self.driver.quit()
-        # self.display.stop()
+        self.display.stop()
