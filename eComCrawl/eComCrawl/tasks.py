@@ -26,43 +26,70 @@ def get_category_urls(website_name,urls_cat):
         categories_list = url_settings['categories']
         # testing only one category for now
         for category in categories_list:    
-            category_urls[website_name][category] += sg.get_categories(url,category,url_settings['hover'])
+            category_urls[website_name][category] += sg.get_categories(url,category,url_settings)
     sg.close_sel()
     # category_urls = dict(category_urls)
     return [url,category_urls]
 
 # print (json.dumps(get_category_urls(),indent=4))
 
-def get_items_data(category_url,category_dict,homepage):
+def get_items_data(category_url,category_dict,homepage,test):
     # gets all the items in category page
     # this will be run as celery task
+    running_list = []
     sg = selenium_getdata()
     try:    
         sg(category_url)
     except Exception as e:
         print ("Error",e)
         sg.close_sel()
+        db = DB()
+        running_urls = db.get_cursor("running_urls")
+        try:
+            running_list = db.read_data(running_urls,{})[0]['urls']
+        except:
+            running_list = []
+            if running_list:
+                running_list.remove(category_url)
+                db.replace_cateogrical_data(running_urls,"urls",{"urls":running_list})
         return []
-    data =sg.get_items(category_dict,homepage)
+    data =sg.get_items(category_dict,homepage,test)
     # except Exception as e:
     # print("Error in opening URL",e)
     # wait for the elements to be visible
     sg.close_sel()
+    db = DB()
+    running_urls = db.get_cursor("running_urls")
+    try:
+        running_list = db.read_data(running_urls,{})[0]['urls']
+    except:
+        running_list = []
+        if running_list:
+            running_list.remove(category_url)
+            db.replace_cateogrical_data(running_urls,"urls",{"urls":running_list})
     return data
 
 @app.task
-def crawl_link(website,category,category_url):
-	# category_urls = json.load(open(BASE_DIR+"/crawlers/cat.json",'r'))
-	get_items_data(category_url,category,website)
-	# get_items_data(category_urls['http://www.jabong.com']['MEN'][2],urls_cat['http://www.jabong.com'],'http://www.jabong.com')
-	return
+def crawl_link(category_url,category,homepage,test=False):
+    # category_urls = json.load(open(BASE_DIR+"/crawlers/cat.json",'r'))
+    data_file = []
+    try:
+        data_file = get_items_data(category_url,category,homepage,test)
+    except:
+        db = DB()
+        running_list = []
+        running_urls = db.get_cursor("running_urls")
+        try:
+            running_list = db.read_data(running_urls,{})[0]['urls']
+        except:
+            running_list = []
+        if running_list:
+            running_list.remove(category_url)
+            db.replace_cateogrical_data(running_urls,"urls",{"urls":running_list})
+    # get_items_data(category_urls['http://www.jabong.com']['MEN'][2],urls_cat['http://www.jabong.com'],'http://www.jabong.com')
+    return data_file
 @app.task
 def crawl_category(website_name,data_template):
-    db = DB()
     data = get_category_urls(website_name,data_template)
-    db_handle =db.get_cursor(website_name+"_categories")
-    logging.info("Categorical URLs Gathered for "+data[0])
-    db.replace_cateogrical_data(db_handle,website_name,data[-1])
-    logging.info("Categorical URLs Updated for "+data[0])
-    return
+    return data[1]
 

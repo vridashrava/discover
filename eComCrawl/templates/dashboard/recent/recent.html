@@ -1,0 +1,71 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block Content %}
+  <div id="PageHeading" class="grid-x grid-padding-x outergrid">
+    <div class="cell medium-12">
+      <h1>{% block Header %}Recent Data{% endblock %}</h1>
+    </div>
+  </div>
+  
+
+
+
+  <div class="grid-x outergrid">
+    <div class="cell">
+      <div class="dashblock">
+        <h2>Last 20 data extracted</h2>
+        <table class="clickable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Marked Price</th>
+              <th>Discount %</th>
+              <th>Selling Price</th>
+              <th width="50">...</th>
+            </tr>
+          </thead>
+          <tbody id="tableContent">
+          {% for item in data %}
+            <!-- <tr data-toggle="Item_{{item.id}}"> -->
+            <tr data-toggle="Item_{{forloop.counter}}">
+              <td><strong>{{item.product_title.0}}</strong> {{item.product_name.0}}
+
+              </td>
+              <td>{{item.mrp.0}}</td>
+              <td>{{item.discount.0}}</td>
+              <td>{{item.selling_price.0}}</td>
+              <td>...</td>
+            </tr>
+            <tr class="dropdownRow">
+              <td colspan="6">
+                <div class="websiteDropdown dropdown-pane" id="Item_{{forloop.counter}}" data-dropdown data-close-on-click="false">
+                  <div>
+                    {% for field, value in item.items %}
+                    {% if field != "images" %}
+                    <div class="grid-x">
+                      <div class="cell grid-padding-x medium-3"><strong>{{field}}</strong></div>
+                      <div class="cell grid-padding-x medium-9">{{value}}</div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                  <div>
+                    {% for image in item.images %}
+                    <img src="{{image}}" onload="if (this.width < 70 || this.height < 70) this.parentElement.removeChild(this);">
+                    {% endfor %}
+                    
+                  </div>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+    </div>  
+  </div>
+
+
+{% endblock %}

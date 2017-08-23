@@ -1,74 +1,115 @@
 {
-    "http://www.jabong.com/":{
-                "categories":["MEN","WOMEN","KIDS","ACCESSORIES","SPORTS"],
-                "hover":true,
-                "type":"category",
-                "pagination":{
-                    "type":"infinite_scroll",
-                    "paginate_parameters" :{
-                        "scroll_time_wait":5,
-                        "products_path_count":"//div[@class='col-sm-6 col-md-9 col-lg-9 catalog-info-wrap']/div[@class='catalog-product-info']/span[@class='product-count']",
-                        "page_listing":52
-                    }
+    "url": "https://www.jabong.com",
+    "submit": "",
+    "urlname": "jabong",
+    "cat": [
+        "MEN",
+        "WOMEN",
+        "KIDS",
+        "SPORTS",
+        "ACCESSORIES"
+    ],
+    "items": {
+        "fields": {
+            "listing": {
+                "url": {
+                    "xpath_type": "href",
+                    "xpath": "//a"
                 },
-                "items":{
-                    "xpath":"//section[@class='row search-product animate-products']/div[@class='col-xxs-6 col-xs-4 col-sm-4 col-md-3 col-lg-3 product-tile img-responsive']",
-                    "click_xpath":"//section[@class='row search-product animate-products']/div[@class='col-xxs-6 col-xs-4 col-sm-4 col-md-3 col-lg-3 product-tile img-responsive']/a/figure[@class='catalog-img']",
-                    "approach":"click",
-                    "fields": {
-                        "listing":{
-                            "product_title":{
-                                "xpath":"//div[@class='product-info']/div[@class='h4']",
-                                "xpath_type":"text"
-                            },
-                            "price":{
-                                "xpath":"//div[@class='price']/span[@class='standard-price']",
-                                "xpath_type":"text"
-                            },
-                            "url":{
-                                "xpath":"//a/@href",
-                                "xpath_type":"href"
-                            }
-                        },
-                        "product":{
-                            "product_brand":{
-                                "xpath":"//div[@class='content']/h1/span[@class='brand']",
-                                "xpath_type":"text"
-                            },
-                            "product_name":{
-                                "xpath":"//div[@class='content']/h1/span[@class='product-title']",
-                                "xpath_type":"text"
-                            },
-                            "selling_price":{
-                                "xpath":"//div[@class='content']/div/div[@class='price discounts']/span[@class='actual-price']",
-                                "xpath_type":"text"
-                            },
-                            "mrp":{
-                                "xpath":"//div[@class='content']/div/div[@class='price discounts']/span[@class='standard-price ']",
-                                "xpath_type":"text"
-                            },
-                            "discount":{
-                                "xpath":"//div[@class='content']/div/div[@class='price discounts']/span[@class='discount productDiscount']",
-                                "xpath_type":"text"
-                            },
-                            "images":{
-                                "xpath":"//div[starts-with(@class,'slide slick-slide')]/img/@src",
-                                "xpath_type":"image"
-                            },
-                            "description":{
-                                "xpath":"//div[@id='productInfo']/section[@class='prod-info']/div[@class='detail']",
-                                "xpath_type":"text"
-                            },
-                            "breadcrumb":{
-                                "xpath":"//ol[@class='breadcrumb']",
-                                "xpath_type":"html"
-                            },
-                            "specifications":{
-                                "xpath":"//section[@class='prod-info']/ul[@class='prod-main-wrapper']",
-                                "xpath_type":"html"
-                            }
-                        }
-                    }
+                "image": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "product_title": {
+                    "xpath_type": "text",
+                    "xpath": "//a/div/div[1]/span"
                 }
+            },
+            "product": {
+                "rating": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "description": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"productInfo\"]/section/div[1]/h2/p"
+                },
+                "review_url": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "product_id": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "specifications": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"productInfo\"]/section/ul"
+                },
+                "sizes": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"size-block\"]/div[1]/ul/li/a/span"
+                },
+                "shipping_charge": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "selling_price": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"pdp-price-info\"]/span[3]"
+                },
+                "breadcrumb": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"content-wrapper\"]/div/div/div[1]/ol"
+                },
+                "mrp": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"pdp-price-info\"]/span[2]"
+                },
+                "product_name": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-details-wrapper\"]/div[1]/div[2]/div/div[1]/h1/span[2]"
+                },
+                "material": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "color": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "images": {
+                    "xpath_type": "src",
+                    "xpath": "//*[@id=\"product-details-wrapper\"]/div[1]/div[1]/div[1]/div/div/div[1]/img"
+                },
+                "delivery_time": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "discount": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"pdp-price-info\"]/span[4]"
+                },
+                "thumbnail": {
+                    "xpath_type": "",
+                    "xpath": ""
                 }
+            }
+        },
+        "approach": "click",
+        "xpath": "//*[@id=\"catalog-product\"]/section[2]/div",
+        "hover": true
+    },
+    "categoryType": "hover",
+    "type": "category",
+    "pagination": {
+        "paginate_parameters": {
+            "page_listing": 52,
+            "products_path_count": "//*[@id=\"catalog-product\"]/header/div/div[1]/div/span",
+            "scroll_time_wait": 10,
+            "load_more": ""
+        },
+        "type": "infinite_scroll"
+    },
+    "xpath": ""
 }

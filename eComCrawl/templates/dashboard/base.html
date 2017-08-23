@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+  <div id="Page" class="">
+    {% include 'snippets/leftbar.html' %}
+    <div id="ContentContainer" class="">
+      {% block TopBar %}
+      <div class="topBar">
+        <div class="grid-x align-middle" style="height:100%;">
+          <div class="medium-6 large-4 cell"><input id="PrimarySearch" type="text" name="" placeholder="Search by Brands..."></div>
+          <div class="medium-6 large-8 cell"></div>
+        </div>
+      </div>
+      {% endblock %}
+
+
+      <div id="Content">
+      {% block Content %}
+      this is the content
+      {% endblock %}
+      </div>
+
+
+    </div>
+
+
+
+  </div>
+{% endblock %}

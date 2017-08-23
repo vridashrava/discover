@@ -1,0 +1,116 @@
+{
+    "type": "category",
+    "submit": "",
+    "urlname": "tatacliq",
+    "url": "https://www.tatacliq.com/",
+    "pagination": {
+        "type": "step_scroll",
+        "paginate_parameters": {
+            "products_path_count": "//*[@id=\"categoryPageDeptHierTree\"]/ul/li/ul/li/ul/li/div/span[2]",
+            "page_listing": 72,
+            "scroll_time_wait": 15,
+            "load_more_xpath": "//*[@id=\"productGrid\"]/div[2]/button"
+        }
+    },
+    "categories": [
+        "Women",
+        "Men",
+        "Electronics",
+        "Appliances",
+        "Kids"
+    ],
+    "items": {
+        "approach": "click",
+        "fields": {
+            "listing": {
+                "url": {
+                    "xpath": "//div[2]/div[2]/h2/a",
+                    "xpath_type": "href"
+                },
+                "product_title": {
+                    "xpath": "",
+                    "xpath_type": ""
+                },
+                "image": {
+                    "xpath": "",
+                    "xpath_type": ""
+                }
+            },
+            "product": {
+                "shipping_charge": {
+                    "xpath": "",
+                    "xpath_type": ""
+                },
+                "description": {
+                    "xpath": "/html/body/main/div[10]/div/div/div[1]/div[1]/div[9]/ul/li[1]/div",
+                    "xpath_type": "html"
+                },
+                "selling_price": {
+                    "xpath": "//*[@id=\"mopPriceId\"]",
+                    "xpath_type": "text"
+                },
+                "mrp": {
+                    "xpath": "//*[@id=\"mrpPriceId\"]",
+                    "xpath_type": "text"
+                },
+                "rating": {
+                    "xpath": "",
+                    "xpath_type": ""
+                },
+                "review_url": {
+                    "xpath": "",
+                    "xpath_type": ""
+                },
+                "material": {
+                    "xpath": "",
+                    "xpath_type": ""
+                },
+                "breadcrumb": {
+                    "xpath": "/html/body/main/div[5]/ul",
+                    "xpath_type": "html"
+                },
+                "delivery_time": {
+                    "xpath": "//*[@id=\"homeDate\"]",
+                    "xpath_type": "text"
+                },
+                "sizes": {
+                    "xpath": "//*[@id=\"variant\"]",
+                    "xpath_type": "html"
+                },
+                "specifications": {
+                    "xpath": "/html/body/main/div[10]/div/div/div[1]/div[2]/div/div",
+                    "xpath_type": "html"
+                },
+                "product_id": {
+                    "xpath": "",
+                    "xpath_type": ""
+                },
+                "product_name": {
+                    "xpath": "/html/body/main/div[10]/div/div/div[1]/div[1]/div[7]/h1",
+                    "xpath_type": "text"
+                },
+                "discount": {
+                    "xpath": "//*[@id=\"savingsOnProductId\"]",
+                    "xpath_type": "text"
+                },
+                "color": {
+                    "xpath": "",
+                    "xpath_type": ""
+                },
+                "thumbnail": {
+                    "xpath": "",
+                    "xpath_type": ""
+                },
+                "images": {
+                    "xpath": "//*[@id=\"addiImageTab0\"]/span/img",
+                    "xpath_type": "data-zoomimagesrc"
+                }
+            }
+        },
+        "xpath_2": "",
+        "hover": true,
+        "xpath": "//*[@id=\"productGrid\"]/div[2]/ul/li/div"
+    },
+    "xpath": "/html/body/main/header/div[2]/div[4]/div/nav/ul/li[1]/div/span[2]",
+    "categoryType": "clickhover"
+}

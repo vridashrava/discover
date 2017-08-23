@@ -1,0 +1,44 @@
+$primary: #5ca5f1;
+$secondary: #303851;
+$tertiary: #3b4562;
+
+$orange: #fa9743;
+
+$blue: #7493fe;
+
+$white: #FFF;
+$black: #000;
+$grey1: #333;
+$grey2: #666;
+$grey3: #c6cbdb;
+$grey4: #d0d3e3;
+$grey5: #eef0f7;
+$page_background: #F9F9F9;
+
+$textcolor: #6a6d89;
+
+$alert: #ec5840;
+
+$warning: #ffae00;
+
+$foundation-palette: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $tertiary,
+  warning: $warning,
+  alert: $alert,
+) !default;
+
+$global-radius: 4px;
+$light-gray: $grey5;
+// $fieldset-margin: 0;
+
+$tooltip-radius: 0px;
+
+
+$BUILD : dev; // DEVELOPMENT (dev) OR PRODUCTION (pro)
+$SIDEBARWIDTH: 250px;
+$TOPBARHEIGHT: 60px;
+$INSETSHADOW : 0 1px 1px rgba(0, 0, 0, .1) inset;
+$SHADOW : 0px 5px 15px rgba(0, 0, 0, 0.25), 0px 5px 65px rgba(0, 0, 0, 0.15);
+$INSETSHADOWFOCUS: 0 1px 1px rgba(0, 0, 0, .2) inset;

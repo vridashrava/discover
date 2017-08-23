@@ -1,0 +1,92 @@
+{% extends "dashboard/monitor_crawlers/base.html" %}
+{% block Content %}
+{{block.super}}
+
+  <div class="grid-x outergrid">
+    <div class="cell">
+      <div class="dashblock">
+        <h2>Crawler Status</h2>
+          <table style="margin:0;">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th width="50%;">URL</th>
+                <th>Status</th>
+                <th>Started</th>
+                <th>Completed</th>
+                <th>Elapsed</th>
+              </tr>
+            </thead>
+            <tbody id="tasksRows">
+              
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+  // var data = [{
+  //   "task": "some task name",
+  //   "site": "google.com",
+  //   "status": "success", //pending, started, success, failure, retry, revoked
+  //   "started": "starting time",
+  //   "completed": "completed time",
+  //   "elapsed": "elapsed time"
+  // }, {
+  //   "task": "some task name",
+  //   "site": "google.com",
+  //   "status": "success", //pending, started, success, failure, retry, revoked
+  //   "started": "starting time",
+  //   "completed": "completed time",
+  //   "elapsed": "elapsed time"
+  // },
+
+  // ];
+
+
+
+  var updateTasks = function(tasks) {
+    var tasksRows  = $("#tasksRows").empty();
+    tasks.forEach(function(task) {
+      var tr = $("<tr/>");
+      tr.append($("<td/>", {
+        text: task.task
+      }));
+      tr.append($("<td/>", {
+        text: task.website
+      }));
+      tr.append($("<td/>", {
+        html: '<div class="crawler_status ' + task.status + '"></div>'
+      }));
+      tr.append($("<td/>", {
+        text: task.started
+      }));
+      tr.append($("<td/>", {
+        text: task.completed
+      }));
+      tr.append($("<td/>", {
+        text: task.elapsed
+      }));
+      tasksRows.append(tr);
+    });
+  }
+
+  var getAjax = function() {
+    var url = "{% url 'monitor_crawlers_api' %}";
+    console.log(url);
+    $.getJSON(url, updateTasks);
+  };
+
+
+  $(document).ready(function() {
+    getAjax();
+    setInterval(function() {
+      getAjax();
+    }, 30000);
+  });
+</script>
+{% endblock%}

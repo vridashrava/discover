@@ -36,3 +36,11 @@ class DB(object):
 
 
 
+# db = DB()
+# 
+# print (db.db_handle.collection_names())
+# running_urls = db.get_cursor("homeshop18_categories")
+# db.insert_data(running_urls,{"urls":["some url","url2"]})
+# print (db.read_data(running_urls,{})[0]['urls'])
+# running_urls.drop()
+# print (running_list)

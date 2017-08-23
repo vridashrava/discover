@@ -1,0 +1,113 @@
+{% extends "dashboard/websites/base.html" %}
+{% load static %}
+
+{% block Content %}
+  {{block.super}}
+  
+  <div class="grid-x outergrid">
+    <div class="cell">
+      <div class="dashblock">
+        <h2>Select Categories</h2>
+        <div class="p30">Verify the links below and submit. You can select the undesired links and remove them.</div>
+        <form name="form2" method="POST" action="{%url 'add_website_2'%}" class="inline"> {% csrf_token %}
+          <ul id="UrlsAccordion" class="accordion">          
+          </ul>
+          <div class="grid-container">
+            <div class="grid-x align-middle">
+              <div class="cell">
+                <div class="p30">
+                  <a href="{% url "add_website_1" %}" class="button">Back</a>
+                  <a href="{% url "reset_new_website" %}" class="button">Reset</a>
+                  <button type="button" id="btnRemoveSelected" class="button">Remove Selected</button>
+                  <button type="submit" class="button">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>  
+  </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+
+  <script type="text/javascript">
+    var sites = {{categories_data|safe}}; 
+
+    $(document).ready(function() {
+      var UrlsAccordion = $("#UrlsAccordion");
+
+      UrlsAccordion.attr("data-accordion","");
+      // var site;
+      // for (site in sites) {}
+      // var site = site
+      var urlsAdded = [];
+      for (var site in sites) {
+        var categories = sites[site];
+        var i = 0;
+        for (var category in categories) {
+
+          var accordianCategory = $("<li/>", {
+            class: "accordion-item",
+            "data-accordion-item": ""
+          });
+
+          accordianCategory.append($("<a/>",{
+            class: "accordion-title",
+            text: category,
+            href: "#"
+          }));
+  
+          var accordionContent = $("<div/>", {
+            class: "accordion-content",
+            "data-tab-content": "",
+          }).appendTo(accordianCategory);
+
+
+          UrlsAccordion.append(accordianCategory);
+
+                    // <ul class="check_container">
+                    //   <li>
+                    //     <input type="checkbox" name="categoryType" id="checkClickHover" value="clickhover">
+                    //     <label for="checkClickHover"><div class="checkbox"></div>Click and Hover</label>
+                    //   </li>
+                    // </ul>
+
+
+          var urls = categories[category];
+          urls.forEach(function(url) {
+            if (urlsAdded.indexOf(url) != 0) {
+              urlsAdded.push(url);
+              i += 1;
+              var html_str = '<div><ul class="check_container"><li><input type="checkbox" class="removeCheckbox" id="removeCheckBox_' + i + '"><label for="removeCheckBox_'+ i +'"><div class="checkbox"></div>' + url + '</label></li></ul><input type="hidden" value="' + url + '" name="' + category + '"></div>';
+              
+              // var html_str = '<div><input type="checkbox" class="removeCheckbox">' + url + '<input type="hidden" value="' + url + '" name="' + category + '"></div>'
+              accordionContent.append(html_str);
+            }
+          });
+        }
+      }
+
+      var elem = new Foundation.Accordion($("#UrlsAccordion"), {
+        multiExpand: true,
+        allowAllClosed: true
+      });
+
+
+      $("#btnRemoveSelected").click(function() {
+        $('.removeCheckbox:checked').closest(".check_container").parent().remove();
+      });
+
+    });
+
+  </script>
+
+{% endblock %}
+
+
+
+

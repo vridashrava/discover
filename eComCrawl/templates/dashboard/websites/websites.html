@@ -1,0 +1,50 @@
+{% extends "dashboard/websites/base.html" %}
+{% block Content %}
+  {{block.super}}
+
+  <div class="grid-x outergrid">
+    <div class="cell">
+      <div class="dashblock">
+        <h2>List of Websites</h2>
+        <table class="clickable">
+          <thead>
+            <tr>
+              <th>Website</th>
+              <th>Categories</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="tableContent">
+            {% for website in websites %}
+            <tr data-toggle="Item_{{forloop.counter}}">
+              <td class="uppercase"><strong>{{website.name}}</strong></td>
+              <td>{{website.categories|length}}</td>
+              <td><a href="{% url 'edit_website' website.name %}">Edit</a></td>
+            </tr>
+            <tr class="dropdownRow">
+              <td colspan="2">
+                <div class="websiteDropdown dropdown-pane" id="Item_{{forloop.counter}}" data-dropdown data-close-on-click="false">
+                  <table style="background: #f0f0f0;">
+                    <tbody>
+                      {% for category in website.categories %}
+                      <tr class="tr_link" data-href="{% url "website_category" website.name category %}">
+                        <td style="padding-left: 40px;">{{category}}</td>
+                      </tr>
+                      {% endfor %}
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+     </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block Header %}Websites{% endblock %}

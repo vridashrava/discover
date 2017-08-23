@@ -1,0 +1,205 @@
+{% extends "dashboard/websites/base.html" %}
+{% load static %}
+
+{% block Content %}
+  {{block.super}}
+  
+  <div class="grid-x outergrid">
+    <div class="cell">
+    
+      <div class="dashblock align-middle">
+
+          <ul class="tabs" data-tabs id="WebsiteFormType">
+            <li class="tabs-title {% if not default_data.sitemap_urlname %}is-active{% endif %}"><a href="#panelWebsite" aria-selected="true">Website</a></li>
+            <li class="tabs-title {% if default_data.sitemap_urlname %}is-active{% endif %}"><a data-tabs-target="panelSiteMap" href="#panelSiteMap">SiteMap</a></li>
+          </ul>
+          <div class="tabs-content" data-tabs-content="WebsiteFormType">
+            <div class="tabs-panel {% if not default_data.sitemap_urlname %}is-active{% endif %}" id="panelWebsite">
+              <form name="form2" method="POST" action="{% url 'add_website' %}" class="inline p30"> {% csrf_token %}
+              
+              <div class="grid-container">
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"></div>
+                  <!-- add error class and error content if error -->
+                  <div class="cell medium-9"><div class="error {% if error %}visible{% endif %}">Oops! We could not get the category from the site. Please provide the XPath instead.</div></div>
+                </div>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Website Name:</label></div>
+                  <div class="cell medium-9"><input type="text" name="urlname" value="{{default_data.urlname}}"></div>
+                </div>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Website URL:</label></div>
+                  <div class="cell medium-9"><input type="text" name="url" value="{{default_data.url}}"></div>
+                </div>
+                <div class="grid-x grid-padding-x align-top">
+                  <div class="cell medium-3"><label>Category Selection Type:</label></div>
+                  <div class="cell medium-9">
+                    <ul class="radio_container">
+                      <li>
+                        <input type="radio" name="categoryType" id="radioHover" value="hover" {% if default_data.categoryType == "hover" %} checked="checked"{% endif %}>
+                        <label for="radioHover"><div class="radio"></div>Hover</label>
+                      </li>
+                      <li>
+                        <input type="radio" name="categoryType" id="radioClickHover" value="clickhover" {% if default_data.categoryType == "clickhover" %} checked="checked"{% endif %}>
+                        <label for="radioClickHover"><div class="radio"></div>Click and Hover</label>
+                      </li>
+                      <li>
+                        <input type="radio" name="categoryType" id="radioXPath" value="xpath" {% if default_data.categoryType == "xpath" %} checked="checked"{% endif %}>
+                        <label for="radioXPath"><div class="radio"></div>XPath</label>
+                      </li>
+                    </ul>
+                    <div class="grid-x grid-padding-x align-top" style="clear: both;">
+                      <div class="cell medium-8">
+                        <input id="txtXPath" type="text" name="xpath" placeholder="XPath" value="{{default_data.xpath}}">
+                      </div>
+                      <div class="cell medium-4">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="grid-x grid-padding-x align-middle" style="display: none;">
+                  <div class="cell medium-3"><label>Category Hover:</label></div>            
+                  <div class="cell medium-9">
+                    <ul class="radio_container">
+                      <li>
+                        <input type="radio" name="hover" id="hoverTrue">                    
+                        <label for="hoverTrue"><div class="radio"></div> True</label>
+                      </li>
+                      <li>
+                        <input type="radio" name="hover" id="hoverFalse">
+                        
+                        <label for="hoverFalse"><div class="radio"></div>False</label>
+                      </li>
+                    </ul>
+                  </div>            
+                </div>
+
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Type:</label></div>            
+                  <div class="cell medium-9"><input type="text" name="type"  value="{{default_data.type}}"></div>
+                </div>
+
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3"><label>Categories:</label></div>
+                  <div id="categoryFieldsContainer" class="cell medium-6">
+                    {% for i in default_data.categories %}
+                    <input type="text" name="cat" placeholder=""  value="{{i}}">
+                    {% empty %}
+                    <input type="text" name="cat" placeholder="">
+                    {% endfor %}
+                  </div>
+                  <div class="cell medium-3 align-self-bottom">
+                    <button type="button" id="BtnAddCategory" class="button">+</button>
+                  </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3"></div>
+                  <div class="cell medium-9"><a href="{% url "reset_new_website" %}" class="button">Reset</a> <button type="submit" class="button" name="submit">Submit</button></div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+              </form>
+
+
+            </div>
+            <div class="tabs-panel {% if default_data.sitemap_urlname %}is-active{% endif %}" id="panelSiteMap">
+              <form name="form2" method="POST" action="{% url 'add_website' %}" class="inline p30"> {% csrf_token %}
+              
+
+              <div class="grid-container">
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"></div>
+                  <!-- add error class and error content if error -->
+                  <div class="cell medium-9"><div class="error {% if error %}visible{% endif %}">Oops! We could not get the category from the site. Please provide the XPath instead.</div></div>
+                </div>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Website Name:</label></div>
+                  <div class="cell medium-9"><input type="text" name="sitemap_urlname" value="{{default_data.sitemap_urlname}}"></div>
+                </div>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>SiteMap URL:</label></div>
+                  <div class="cell medium-9"><input type="text" name="sitemap_url" value="{{default_data.sitemap_url}}"></div>
+                </div>
+                <div class="grid-x grid-padding-x align-top">
+                  <div class="cell medium-3"><label>Crawl Type:</label></div>
+                  <div class="cell medium-9">
+                    <ul class="radio_container">
+                      <li>
+                        <input type="radio" name="site_crawlType" id="radioItem" value="item" {% if default_data.site_crawlType == "item" %} checked="checked"{% endif %}>
+                        <label for="radioItem"><div class="radio"></div>Item</label>
+                      </li>
+                      <li>
+                        <input type="radio" name="site_crawlType" id="radioUrl" value="url" {% if default_data.site_crawlType == "url" %} checked="checked"{% endif %}>
+                        <label for="radioUrl"><div class="radio"></div>URL</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3"></div>
+                  <div class="cell medium-9"><a href="{% url "reset_new_website" %}" class="button">Reset</a> <button type="submit" class="button" name="submit">Submit</button></div>
+                  
+                </div>
+              </div>
+
+              </form>
+
+            </div>
+          </div>
+
+          
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+  <!-- <script src= "{% static "js/form.js" %}"></script> -->
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#BtnAddCategory").click(function() {
+        $("#categoryFieldsContainer").append('<input type="text" name="cat" placeholder="">');
+      });
+
+     var category_type = "{{default_data.categoryType}}";
+     if (category_type == "clickhover" || category_type == "xpath") {
+      $("#txtXPath").show();
+     } else {
+      $("#txtXPath").hide();
+     }
+      $("#radioClickHover, #radioXPath, #radioHover").change(function() {
+      var e = $("#txtXPath");
+      switch($(this).val()) {
+          case 'hover':
+            e.hide();
+            break;
+          case 'clickhover':
+            e.show().focus();
+            break;
+          case 'xpath':
+            e.show().focus();
+            break;
+        }
+      });
+
+    });
+
+  </script>
+
+{% endblock %}
+
+

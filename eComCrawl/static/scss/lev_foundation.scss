@@ -1,0 +1,304 @@
+@import "settings";
+@import "foundation";
+
+@include foundation-everything;
+// @include foundation-global-styles;
+// @include foundation-xy-grid-classes;
+// @include foundation-grid;
+// @include foundation-flex-grid;
+
+
+
+label {
+  span {
+    width: 200px;
+  }
+}
+
+input[type="text"] {
+  // box-shadow: none;
+}
+
+
+
+
+
+form {
+  &.inline {
+
+    .grid-container {
+
+      label {
+        text-align: right;
+        line-height: 2.8em;
+        margin-bottom: 1rem;
+      }
+      
+      [type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
+      }
+    }
+  }
+}
+
+
+
+
+ul.radio_container {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    color: $grey3;
+    display: block;
+    position: relative;
+    float: left;
+    user-select: none;
+
+    input[type=radio]{
+      position: absolute;
+      visibility: hidden;
+      
+      + label {
+        display: block;
+        position: relative;
+        padding: 0 20px 0 0;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        z-index: 9;
+        cursor: pointer;
+        transition: color 150ms linear;
+      
+      }
+
+      &:checked ~ label .radio {
+        border: 4px solid $primary;
+      }
+
+      &:checked ~ label .check::before{
+        background: $primary;
+      }
+
+      &:checked ~ label{
+        color: $primary;
+      }
+    }
+
+    .radio {
+      position: relative;
+      display: inline-block;
+      border: 2px solid $grey3;
+      border-radius: 100%;
+      height: 1.2em;
+      width: 1.2em;
+      top: .2em;
+      left: 0;
+      z-index: 5;
+      margin-right: 5px;
+      transition: border 150ms;
+    }
+  }
+}
+
+
+
+ul.check_container {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  clear: both;
+
+  &::after {
+    position: relative;
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  li {
+    color: $grey3;
+    display: block;
+    position: relative;
+    float: left;
+    user-select: none;
+
+    input[type=checkbox]{
+      position: absolute;
+      visibility: hidden;
+      
+      + label {
+        display: block;
+        position: relative;
+        padding: 0 20px 0 0;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        z-index: 9;
+        cursor: pointer;
+        transition: color 150ms linear;
+      
+      }
+
+      &:checked ~ label .checkbox {
+        border: 2px solid $primary;
+        background: $primary;
+      
+        &::before {
+          position: absolute;
+          content: "";
+          height: .5em;
+          width: .8em;
+          background: transparent;
+          left: .05em;
+          top: .1em;
+          transform: rotate(-45deg);
+          border: 3px solid $white;
+          border-top: none;
+          border-right: none;
+        }
+      }
+
+      &:checked ~ label .check::before{
+        background: $primary;
+      }
+
+      &:checked ~ label{
+        color: $primary;
+      }
+    }
+
+    .checkbox {
+      position: relative;
+      display: inline-block;
+      border: 2px solid $grey3;
+      border-radius: 5px;
+      height: 1.2em;
+      width: 1.2em;
+      top: .2em;
+      left: 0;
+      z-index: 5;
+      margin-right: 5px;
+      transition: border 150ms, background 150ms;
+    }
+  }
+}
+
+
+
+
+[type='text'], [type='password'], [type='date'], [type='datetime'], [type='datetime-local'], [type='month'], [type='week'], [type='email'], [type='number'], [type='search'], [type='tel'], [type='time'], [type='url'], [type='color'], textarea {
+  border: 1px solid $grey3;
+  box-shadow: $INSETSHADOW;
+  border-radius: 4px;
+  transition: box-shadow 150ms, border 150ms;
+  &:focus {
+    box-shadow: $INSETSHADOWFOCUS;
+    border: 1px solid $primary;
+  }
+}
+
+.button {
+
+  border-radius: 4px;
+  outline: none;
+
+  &.primary {
+
+  }
+
+
+  &.round {
+    padding: 5px 10px;
+    border-radius: 50px;
+    background: transparent;
+    color: $textcolor;
+    font-weight: 700;
+  }
+  &.active {
+    background: $primary;
+    color: $white;
+    // scale-color($button-background, $lightness: -15%);
+  }
+}
+
+
+
+.accordion {
+  .accordion-item {
+
+    .accordion-title {
+      font-weight: 700;
+      color: $primary;
+      font-size: .8em;
+    }
+    .accordion-content {
+      padding: 0;
+    }
+
+    &:first-child > :first-child {
+      // border-radius: 4px 4px 0 0;
+    }
+    &:last-child > :first-child {
+      // border-radius: 0 0 4px 4px;
+    }
+  }
+}
+
+
+
+table {
+  thead {
+    background: $grey5;
+    tr {
+      border-bottom: 1px solid $grey4;
+    }
+  }
+  tbody {
+    tr {
+      &:nth-child(even),
+      &:nth-child(odd){
+        border-bottom: 1px solid $grey5;
+      }
+      &.dropdownRow {
+        border: none;
+        > td {
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+  th, td {
+    padding: 1rem;
+  }
+  tr:nth-child(even) {
+    background: $white;
+  }
+
+  &.clickable {
+    tbody {
+      tr:not(.dropdownRow) {
+        cursor: pointer;
+        transition: background 150ms, color 150ms;
+        &:hover {
+          background: lighten($grey5, 3%);
+          color: $black;
+        }
+        &.hover {
+          background: $primary;
+          color: $white;
+        }
+
+      }
+    }
+  }
+}
+
+.dropdown-pane {
+  padding: 0;
+  border: none;
+  box-shadow: $SHADOW;
+
+  > div {
+    padding: 30px;
+  }
+}
+

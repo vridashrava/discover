@@ -1,0 +1,13 @@
+{% load static %}
+  <script src="{% static "js/jquery/dist/jquery.min.js" %}"></script>
+  <script src="{% static "js/foundation-sites/dist/js/foundation.min.js" %}"></script>
+  <script src="{% static "js/chart.js/Chart.min.js" %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(document).foundation();
+      
+      $("tr.tr_link").click(function() {
+        window.location = $(this).data("href");
+      });
+    });
+  </script>

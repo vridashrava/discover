@@ -1,0 +1,98 @@
+{% extends "dashboard/websites/base.html" %}
+{% block Content %}
+  {{block.super}}
+
+  <div class="grid-x outergrid">
+    <div class="cell">
+      <div class="dashblock">
+        <h2>Category Urls</h2>
+        <table class="clickable">
+          <thead>
+            <tr>
+              <th>Category Urls</th>
+              <th>Current Status</th>
+<!--               <th>Crawled Status</th>
+              <th>Last Crawled</th>
+              <th>Items Gathered</th>
+              <th>Total Count</th>
+              <th>Unique Items</th>
+ -->            </tr>
+          </thead>
+          <tbody id="websiteCategory">
+            {% for category, info in urls.items %}
+            <tr data-toggle="Item_{{forloop.counter}}">
+              <td>{{category}}</td>
+              <td>{{info.current_status}}</td>
+            </tr>
+            <tr class="dropdownRow">
+              <td colspan="6">
+                <div class="dropdown-pane" id="Item_{{forloop.counter}}" data-dropdown data-close-on-click="true" style="width:500px;">
+
+
+                  <div>
+                    <div class="grid-x">
+                      <div class="cell">
+                        <div class="status">Status <strong class="{{info.current_status}}">{{info.current_status}}</strong></div>
+                      </div>
+                    </div>
+                    <div class="grid-x" style="margin-top: 20px">
+                      <div class="cell medium-6"><strong>Last Crawled Status</strong></div>
+                      <div class="cell medium-6 text-right">{{info.crawled_status}}</div>
+                    </div>
+                    <div class="grid-x">
+                      <div class="cell medium-6"><strong>Last Crawled</strong></div>
+                      <div class="cell medium-6  text-right">{{info.last_crawled}}</div>
+                    </div>
+                    <div class="grid-x" style="margin-top: 20px;">
+                      <div class="cell medium-4"><strong>Items Gathered</strong><div>{{info.items_gathered}}</div></div>
+                      <div class="cell medium-4"><strong>Total Count</strong><div>{{info.total_count}}</div></div>
+                      <div class="cell medium-4"><strong>Unique Items</strong><div>{{info.unique_items}}</div></div>
+                    </div>
+                    <div class="grid-x" style="margin-top: 20px;">
+                      <div class="cell {{info.current_status}}">
+                        <button class="btnStartCrawler button" data-url="{{category}}">Start Crawler</button>
+                        <!-- <div class="runningInfo">This crawler is running!</div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+     </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block Header %}<span style="text-transform:uppercase;">{{website_name}} - {{category}}</span>{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+
+  <script type="text/javascript">
+    $(".btnStartCrawler").click(function() {
+      var url = $(this).data("url");
+      var e = $(this);
+      $.post("{% url "start_crawl" %}", {
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+        url: url,
+        site: "{{ website_name }}"
+      }, function(response) {
+        if (response == "running") {
+          e.parent().addClass("running");
+          console.log(e.closest("tr").prev().children().eq(1).text("running"));
+          e.closest(".dropdown-pane").find(".status strong").text("running").removeClass("ready").addClass("running");
+        } else {
+          alert("Oops! Error occured. Please refresh the page.");
+        }
+      });
+    });    
+
+
+// {{urls}}
+  </script>
+
+{% endblock %}

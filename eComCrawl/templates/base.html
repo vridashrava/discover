@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block Headtitle %}Leviathan Crawler{% endblock %}</title>
+    {% block stylesheets1 %}
+        {% include "snippets/stylesheets.html" %}
+    {% endblock %}
+    {% block stylesheets2 %}{% endblock %}
+    {% block stylesheets3 %}{% endblock %}
+</head>
+<body>
+    {% block container %}
+    {% endblock %}
+
+    {% block scripts %}
+        {% include "snippets/scripts.html" %}
+    {% endblock %}
+    {% block scripts2 %}{% endblock %}
+    {% block scripts3 %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+Click and Hover
+/html/body/div[1]/div[1]/div/nav/div/ul/li[3]/a
+
+#Listing
+
+Parent
+//*[@id="content"]/div[2]/div[3]
+//*[@id="content"]/div[2]/div[3]/div[1]
+//*[@id="content"]/div[2]/div[3]/div
+
+
+Name
+//*[@id="content"]/div[2]/div[3]/div/div[2]/a/span[2]
+text
+
+Image
+//*[@id="content"]/div[2]/div[3]/div/div[2]/a/div[1]/div/img/@data-original
+Image
+
+Product URL
+//*[@id="content"]/div[2]/div[3]/div/div[2]/a/@href
+href
+
+#Product Details
+
+Product Name
+//*[@id="contentbody"]/div[5]/div/div[1]/div[1]/div[1]/h1
+Text
+
+Product ID
+//*[@id="contentbody"]/div[5]/div/div[1]/div[1]/div[1]/meta[1]/@content
+content
+
+Rating
+//*[@id="contentbody"]/div[5]/div/div[1]/div[1]/div[1]/div/span[1]/span/span[2]
+text
+
+MRP
+//*[@id="contentbody"]/div[5]/div/div[1]/div[1]/div[2]/div[1]/span[2]/
+text
+
+Discount
+//*[@id="contentbody"]/div[5]/div/div[1]/div[1]/div[2]/div[1]/span[3]/span[2]
+text
+
+Selling Price
+//*[@id="contentbody"]/div[5]/div/div[1]/div[1]/div[2]/div[1]/span[1]/span
+text
+
+Image
+//*[@id="zoom1"]/@href
+image
+
+Description
+//*[@id="contentbody"]/div[5]/div/div[4]/div[1]/div[1]
+html
+
+Specification
+//*[@id="midproductcolumtwo"]/div[2]/div[2]
+html
+
+Thumbnail
+//*[@id="foo2"]/li/a/img/@src
+image
+
+Breadcrumb
+//*[@id="pagenav"]/div
+html
+
+Color
+//*[@id="midproductcolumtwo"]/div[4]/ul/li/a/@href
+href
+

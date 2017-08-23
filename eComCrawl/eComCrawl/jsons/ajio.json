@@ -1,0 +1,115 @@
+{
+    "urlname": "ajio",
+    "categoryType": "hover",
+    "submit": "",
+    "cat": [
+        "MEN-SALE",
+        "WOMEN-SALE",
+        "INDIE-SALE",
+        "KIDS-SALE",
+        "TECH-SALE"
+    ],
+    "xpath": "",
+    "pagination": {
+        "paginate_parameters": {
+            "scroll_time_wait": 10,
+            "load_more_xpath": "//*[@id=\"content\"]/div[3]/div[1]/div[3]/div/div[7]/button",
+            "page_listing": 36,
+            "products_path_count": "//*[@id=\"content\"]/div[3]/div[1]/div[3]/div/div[4]/div/div[1]/span[1]"
+        },
+        "type": "step_scroll"
+    },
+    "items": {
+        "approach": "click",
+        "hover": true,
+        "xpath": "//*[@id=\"fnl-plp-producthov\"]",
+        "fields": {
+            "listing": {
+                "url": {
+                    "xpath_type": "href",
+                    "xpath": "//"
+                },
+                "product_title": {
+                    "xpath_type": "text",
+                    "xpath": "//div/div[5]"
+                },
+                "image": {
+                    "xpath_type": "",
+                    "xpath": ""
+                }
+            },
+            "product": {
+                "images": {
+                    "xpath_type": "src",
+                    "xpath": "//*[@id=\"primary_image\"]/img"
+                },
+                "specifications": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"AddToCart-AddToCartAction\"]/div[3]/ul"
+                },
+                "product_name": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"content\"]/div/div/div[2]/div[2]/div[2]/h1/span"
+                },
+                "product_id": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "review_url": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "rating": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "thumbnail": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "material": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "delivery_time": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "discount": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"content\"]/div/div/div[2]/div[2]/div[2]/div[1]/div[1]/form/div/div[2]/strong"
+                },
+                "selling_price": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"content\"]/div/div/div[2]/div[2]/div[2]/div[1]/div[1]/form/div/div[2]/span/span[@id=\"finprc-amt\"]"
+                },
+                "shipping_charge": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "sizes": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"VariantSizesDiv\"]/div/div"
+                },
+                "mrp": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"fnl-pdp-prize\"]/span[@id=\"finprc-amt\"]"
+                },
+                "color": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"color\"]/span"
+                },
+                "description": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "breadcrumb": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"content\"]/div/div/div[2]/div[1]/div/div/div/ol"
+                }
+            }
+        }
+    },
+    "type": "category",
+    "url": "https://www.ajio.com/"
+}

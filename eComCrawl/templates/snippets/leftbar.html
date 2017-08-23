@@ -1,0 +1,35 @@
+    <div id="LeftBar" class="">
+      <div id="Brand" class="topBar">
+        <div id="Logo">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+           <g>
+            <line stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_3" y2="21.94188" x2="84.84985" y1="21.94188" x1="12.58431" stroke-width="15" stroke="#ffffff" fill="none"></line>
+            <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_4" y2="49.19301" x2="84.84985" y1="49.19301" x1="35.83431" stroke-width="15" fill="none"></line>
+            <line stroke="#ffffff" stroke-linecap="undefined" stroke-linejoin="undefined" id="svg_2" y2="78.45261" x2="84.84985" y1="78.45261" x1="55.83429" stroke-width="15" fill="none"></line>
+           </g>
+          </svg>
+        </div>
+        <span>ECOMCRAWL</span>
+      </div>
+      <div id="LeftBarNav">
+        <ul id="" class="menu vertical">
+          <li{% if page == "dashboard" %} class="active"{% endif %}><a href="{% url "dashboard" %}"><i class="fa fa-pie-chart"></i> Stats</a></li>
+          <li{% if page == "recent" %} class="active"{% endif %}><a href="{% url "recent" %}"><i class="fa fa-table"></i> Recent Data</a></li>
+          <li{% if page == "monitor_crawlers" %} class="active"{% endif %}><a href="{% url "monitor_crawlers" %}"><i class="fa fa-tasks"></i> Monitor Crawlers</a></li>
+          <li{% if page == "logs" %} class="active"{% endif %}><a href="{% url "logs" %}"><i class="fa fa-file-text-o"></i> Logs</a></li>
+          <li{% if page == "websites" %} class="active"{% endif %}><a href="{% url "websites" %}"><i class="fa fa-globe"></i> Websites</a></li>
+        </ul>
+
+      </div>
+      <ul id="LeftBarBottomMenu" class="dropdown menu" data-dropdown-menu style="position:absolute; bottom:0px;">
+        <li>
+          <a href="#"><i class="fa fa-user"></i></a>
+          <!-- <ul id="UserMenu" class="menu">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Log Out</a></li>
+          </ul> -->
+        </li>
+        <li><a href="#"><i class="fa fa-sign-out"></i></a></li>
+      </ul>
+    </div>

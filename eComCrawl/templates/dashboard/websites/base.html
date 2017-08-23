@@ -1,0 +1,10 @@
+{% extends "dashboard/base.html" %}
+{% block Content %}
+  <div id="PageHeading" class="grid-x grid-padding-x outergrid">
+    <div class="cell medium-12">
+      <h1>{% block Header %}Websites{% endblock %}</h1>
+      <a class="button round{% if secondary_page == "all_websites" %} active{% endif %}" href="{% url "websites" %}">All Websites</a>
+      <a class="button round{% if secondary_page == "add_website" %} active{% endif %}" href="{% url "add_website" %}">New</a>
+    </div>
+  </div>
+{% endblock %}

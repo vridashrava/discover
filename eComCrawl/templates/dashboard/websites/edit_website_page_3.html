@@ -1,0 +1,299 @@
+{% extends "dashboard/websites/base.html" %}
+{% load static %}
+
+{% block Content %}
+  {{block.super}}
+  <form name="form2" method="POST" class="inline"> {% csrf_token %}
+  
+  <div class="grid-x outergrid">
+    <div class="cell">
+    
+      <div class="dashblock align-middle">
+        <h2>Listing Page</h2>
+        <div class="p30">
+          <div class="grid-container">
+
+
+            <div id="ProductContainersTemplate" style="display: none;">
+              <div>
+                <hr>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Product Parent Container [[count]]:</label></div>
+                  <div class="cell medium-6"><input type="text" name="items_xpath_[[count]]" placeholder="XPath" value=""></div>
+                </div>
+<!--                 <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Product Title:</label></div>
+                  <div class="cell medium-6"><input type="text" name="xpath_product_title_[[count]]" placeholder="XPath" value=""></div>
+                  <div class="cell medium-3"><input type="text" name="type_product_title_[[count]]" placeholder="Type" value=""></div>
+                </div>
+ -->                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Product URL:</label></div>
+                  <div class="cell medium-6"><input type="text" name="xpath_url" placeholder="XPath" value=""></div>
+                  <div class="cell medium-3"><input type="text" name="type_url" placeholder="Type" value=""></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="ProductContainers">
+              <div>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"></div>
+                  <div class="cell medium-9"><div class="error {% if error %}visible{% endif %}">Oops! Please check!</div></div>
+                </div>
+              </div>
+              <div>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Product Parent Container:</label></div>
+                  <div class="cell medium-6"><input type="text" name="items_xpath_1" placeholder="XPath" value="{{default_data.items_xpath_1}}"></div>
+                </div>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Product Title:</label></div>
+                  <div class="cell medium-6"><input type="text" name="xpath_product_title_1" placeholder="XPath" value="{{default_data.xpath_product_title_1}}"></div>
+                  <div class="cell medium-3"><input type="text" name="type_product_title_1" placeholder="Type" value="{{default_data.type_product_title_1}}"></div>
+                </div>
+                <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Product URL:</label></div>
+                  <div class="cell medium-6"><input type="text" name="xpath_url" placeholder="XPath" value="{{default_data.xpath_url_1}}"></div>
+                  <div class="cell medium-3"><input type="text" name="type_url" placeholder="Type" value="{{default_data.type_url_1}}"></div>
+                </div>
+              </div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"></div>
+              <div class="cell medium-9">
+                <button type="button" id="BtnAddProductContainer" class="button">Add alternative product container</button>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="grid-x grid-padding-x align-top">
+              <div class="cell medium-3"><label>Pagination Type:</label></div>
+              <div class="cell medium-9">
+                <ul class="radio_container">
+                  <li>
+                    <input type="radio" name="paginationType" id="radioInfiniteScroll" value="infinite_scroll" {% if default_data.paginationType == "infinite_scroll" %} checked="checked" {% endif %}>
+                    <label for="radioInfiniteScroll"><div class="radio"></div>Infinite Scroll</label>
+                  </li>
+                  <li>
+                    <input type="radio" name="paginationType" id="radioStepScroll" value="step_scroll" {% if default_data.paginationType == "step_scroll" %} checked="checked" {% endif %}>
+                    <label for="radioStepScroll"><div class="radio"></div>Step Scroll</label>
+                  </li>
+                  <li>
+                    <input type="radio" name="paginationType" id="radioPageByPage" value="page_by_page" {% if default_data.paginationType == "page_by_page" %} checked="checked" {% endif %}>
+                    <label for="radioPageByPage"><div class="radio"></div>Page by Page</label>
+                  </li>
+                </ul>
+                <div class="grid-x grid-padding-x align-middle" style="clear: both;">
+                  <div class="cell medium-4">
+                    <input id="paginationPauseTime" type="text" name="pagination_pause_time" placeholder="Pause Time"  value="{{default_data.pagination_pause_time}}">
+                  </div>
+                  <div class="cell medium-4">
+                    <input id="paginationItemsPerPage" type="text" name="pagination_items_per_page" placeholder="Items per page"  value="{{default_data.pagination_items_per_page}}">
+                  </div>
+                  <div class="cell medium-8">
+                    <input id="xpathProductCount" type="text" name="xpath_product_count" placeholder="XPath of Product Count"  value="{{default_data.xpath_product_count}}">
+                  </div>
+                  <div class="cell medium-8">
+                    <input id="xpathNextButton" type="text" name="xpath_next_button" placeholder="XPath of Next or Load More"  value="{{default_data.xpath_next_button}}">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+
+<!--             <div class="grid-x grid-padding-x">
+              <div class="cell medium-3"></div>
+              <div class="cell medium-9"><button type="submit" class="button" name="submit">Submit</button></div>
+              
+            </div>
+ -->          </div>
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="grid-x outergrid">
+    <div class="cell">
+      <div class="dashblock align-middle">
+        <h2>Product Page</h2>
+        <div class="p30">
+          <div class="grid-container">
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Product Name:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_product_name" placeholder="XPath"  value="{{default_data.xpath_product_name}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_product_name" placeholder="Type"  value="{{default_data.type_product_name}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Product ID:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_product_id" placeholder="XPath" value="{{default_data.xpath_product_id}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_product_id" placeholder="Type" value="{{default_data.type_product_id}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Rating:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_rating" placeholder="XPath" value="{{default_data.xpath_rating}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_rating" placeholder="Type"  value="{{default_data.type_rating}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Review URL:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_review_url" placeholder="XPath" value="{{default_data.xpath_review_url}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_review_url" placeholder="Type" value="{{default_data.type_review_url}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>MRP:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_mrp" placeholder="XPath" value="{{default_data.xpath_mrp}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_mrp" placeholder="Type" value="{{default_data.type_mrp}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Discount:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_discount" placeholder="XPath" value="{{default_data.xpath_discount}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_discount" placeholder="Type" value="{{default_data.type_discount}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Selling Price:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_selling_price" placeholder="XPath" value="{{default_data.xpath_selling_price}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_selling_price" placeholder="Type" value="{{default_data.type_selling_price}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Product Images:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_images" placeholder="XPath" value="{{default_data.xpath_images}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_images" placeholder="Type" value="{{default_data.type_images}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Shipping Charge:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_shipping_charge" placeholder="XPath" value="{{default_data.xpath_shipping_charge}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_shipping_charge" placeholder="Type" value="{{default_data.type_shipping_charge}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Delivery Time:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_delivery_time" placeholder="XPath" value="{{default_data.xpath_delivery_time}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_delivery_time" placeholder="Type" value="{{default_data.type_delivery_time}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Material:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_material" placeholder="XPath" value="{{default_data.xpath_material}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_material" placeholder="Type" value="{{default_data.type_material}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Color:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_color" placeholder="XPath" value="{{default_data.xpath_color}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_color" placeholder="Type" value="{{default_data.type_color}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Description:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_description" placeholder="XPath" value="{{default_data.xpath_description}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_description" placeholder="Type" value="{{default_data.type_description}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Specification:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_specifications" placeholder="XPath" value="{{default_data.xpath_specifications}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_specifications" placeholder="Type" value="{{default_data.type_specifications}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Thumbnail URL:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_thumbnail" placeholder="XPath" value="{{default_data.xpath_thumbnail}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_thumbnail" placeholder="Type" value="{{default_data.type_thumbnail}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Breadcrumb:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_breadcrumb" placeholder="XPath" value="{{default_data.xpath_breadcrumb}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_breadcrumb" placeholder="Type" value="{{default_data.type_breadcrumb}}"></div>
+            </div>
+            <div class="grid-x grid-padding-x align-middle">
+              <div class="cell medium-3"><label>Sizes Available:</label></div>
+              <div class="cell medium-6"><input type="text" name="xpath_sizes" placeholder="XPath" value="{{default_data.xpath_sizes}}"></div>
+              <div class="cell medium-3"><input type="text" name="type_sizes" placeholder="Type" value="{{default_data.type_sizes}}"></div>
+            </div>
+
+          </div>
+          
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="grid-x outergrid">
+    <div class="cell">
+      <div class="dashblock align-middle">
+        <div class="p30">
+          <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+              <div class="cell medium-3"></div>
+              <div class="cell medium-9"><button type="submit" class="button" name="submit">Update</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
+
+
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+
+  <script type="text/javascript">
+      var is_pagination_selected = "{{default_data.paginationType}}";
+
+      var paginationPauseTime = $("#paginationPauseTime").hide(); 
+      var paginationItemsPerPage = $("#paginationItemsPerPage").hide(); 
+      var xpathProductCount = $("#xpathProductCount").hide(); 
+      var xpathNextButton = $("#xpathNextButton").hide(); 
+
+
+      $("#radioInfiniteScroll, #radioStepScroll, #radioPageByPage").change(function() {
+        switch($(this).val()) {
+            case 'infinite_scroll':
+              paginationPauseTime.show();
+              paginationItemsPerPage.show();
+              xpathProductCount.show();
+              xpathNextButton.hide();
+              break;
+            case 'step_scroll':
+              paginationPauseTime.show();
+              paginationItemsPerPage.show();
+              xpathProductCount.show();
+              xpathNextButton.show();
+              break;
+            case 'page_by_page':
+              paginationPauseTime.show();
+              paginationItemsPerPage.show();
+              xpathProductCount.show();
+              xpathNextButton.show();
+              break;
+        }
+      });
+      if (is_pagination_selected == "infinite_scroll") {
+        $("#radioInfiniteScroll").change();
+      } else if (is_pagination_selected == "step_scroll") {
+        $("#radioStepScroll").change();
+      } else if (is_pagination_selected == "page_by_page") {
+        $("#radioPageByPage").change();
+      }
+
+
+      var productContainers = 1;
+
+      $("#BtnAddProductContainer").click(function() {
+        productContainers += 1;
+        e = $("#ProductContainersTemplate").clone().html().replace(/\[\[count\]\]/g, productContainers);
+        $("#ProductContainers").append(e);
+      });
+
+  </script>
+
+{% endblock %}
+
+
+
+

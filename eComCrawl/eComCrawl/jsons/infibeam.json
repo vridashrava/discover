@@ -1,0 +1,122 @@
+{
+    "url": "https://www.infibeam.com/",
+    "urlname": "infibeam",
+    "items": {
+        "hover": true,
+        "approach": "click",
+        "fields": {
+            "product": {
+                "review_url": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "color": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "description": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "images": {
+                    "xpath_type": "src",
+                    "xpath": "//*[@id=\"product-images\"]/span[1]/img[3]"
+                },
+                "product_name": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"title\"]/h1"
+                },
+                "sizes": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "delivery_time": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "breadcrumb": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"prod_img\"]/div[1]"
+                },
+                "selling_price": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"price-after-discount\"]/span"
+                },
+                "shipping_charge": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "product_id": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "mrp": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"base-price\"]/span[2]"
+                },
+                "material": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "specifications": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"double\"]"
+                },
+                "discount": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "rating": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "thumbnail": {
+                    "xpath_type": "",
+                    "xpath": ""
+                }
+            },
+            "listing": {
+                "url": {
+                    "xpath_type": "href",
+                    "xpath": "//div[1]/a"
+                },
+                "product_title": {
+                    "xpath_type": "text",
+                    "xpath": "//div[2]/div[2]/a"
+                },
+                "image": {
+                    "xpath_type": "",
+                    "xpath": ""
+                }
+            }
+        },
+        "xpath": "//*[@id=\"resultPane\"]/div[1]/div/div"
+    },
+    "submit": "",
+    "pagination": {
+        "type": "step_scroll",
+        "paginate_parameters": {
+            "products_path_count": "//*[@id=\"searchCont\"]/form/div/p",
+            "load_more_xpath": "//*[@id=\"load-next-set\"]",
+            "page_listing": 20,
+            "scroll_time_wait": 10
+        }
+    },
+    "categoryType": "clickhover",
+    "type": "category",
+    "cat": [
+        "Mobiles & Tablets",
+        "Computers & Accessories",
+        "Audio, Video & Cameras",
+        "Home & Kitchen",
+        "Books",
+        "APPARELS & ACCESSORIES",
+        "Fashion & Fitness",
+        "Beauty & Baby Care",
+        "Gifts & Grocery",
+        "HOME FURNISHING & DECOR",
+        "MAGAZINES, MOVIES & MUSIC",
+        "AUTO ACCESSORIES & OTHERS"
+    ],
+    "xpath": "//*[@id=\"infibeam-navigation\"]/div[1]/a"
+}

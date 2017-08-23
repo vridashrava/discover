@@ -6,7 +6,7 @@ sys.path.append(BASE_DIR)
 
 from eComCrawl.tasks import crawl_link,crawl_category
 from crawlers.db import DB
-category_urls = json.load(open(BASE_DIR+"/crawlers/cat.json",'r'))
+category_urls = {}
 data_fields = json.load(open(BASE_DIR+"/crawlers/data_template.json","r+"))
 urls_cat = data_fields['urls']
 db = DB()
@@ -35,6 +35,8 @@ try:
 	category_urls = db.read_data(db_handle,{args.w:{'$exists':True}})[0]
 except:
 	crawl_category.delay(args.w,data_fields)
+	db_handle = db.get_cursor(args.w+"_categories")
+	category_urls = db.read_data(db_handle,{args.w:{'$exists':True}})[0]
 if args.c:
 	if args.i:
 		index = int(args.i)

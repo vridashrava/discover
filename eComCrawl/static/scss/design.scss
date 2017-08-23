@@ -1,0 +1,538 @@
+@import "settings";
+
+@if $BUILD == dev {
+  @font-face {
+    font-family: 'Lato';
+    src: url(../font/Lato/Lato-Black.ttf);
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Lato';
+    src: url(../font/Lato/Lato-Regular.ttf);
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Lato';
+    src: url(../font/Lato/Lato-Light.ttf);
+    font-weight: 300;
+  }
+  
+} @else {
+  @import url('https://fonts.googleapis.com/css?family=Lato');
+}
+
+
+html, body {
+  background: $grey4;
+  color: $textcolor;
+  font-family: 'Lato', sans-serif;
+}
+
+
+#Page {
+  margin-top: $TOPBARHEIGHT;
+
+  #LeftBar {
+    background: $tertiary;
+    width: $SIDEBARWIDTH;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    padding-top: $TOPBARHEIGHT;
+    .topBar {
+      width: $SIDEBARWIDTH;
+      background: $secondary;
+    }
+  }
+
+  #ContentContainer {
+    height: calc(100vh - #{$TOPBARHEIGHT});
+    width: calc(100% - #{$SIDEBARWIDTH});
+    margin-left: $SIDEBARWIDTH;
+
+    #Content {
+      .outergrid {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    }
+
+    .topBar {
+      width: calc(100% - #{$SIDEBARWIDTH});
+      background: $tertiary;
+      z-index: 200;
+    }
+  }
+
+  .topBar {
+    height: $TOPBARHEIGHT;
+    position: fixed;
+    top: 0;
+  
+    #PrimarySearch {
+      height: $TOPBARHEIGHT;
+      background: transparentize($primary, .25);
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      font-size: 18px;
+      color: $white;
+      padding-left: 30px;
+
+      &::-webkit-input-placeholder { /* Chrome */
+        color: $grey5;
+      }
+      &:-ms-input-placeholder { /* IE 10+ */
+        color: $grey5;
+      }
+      &::-moz-placeholder { /* Firefox 19+ */
+        color: $grey5;
+        opacity: 1;
+      }
+      &:-moz-placeholder { /* Firefox 4 - 18 */
+        color: $grey5;
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+        background: transparentize($primary, 0);
+      }
+    }
+
+  }
+}
+
+#Brand {
+  color: $white;
+  line-height: $TOPBARHEIGHT;
+  font-weight: 700;
+  font-size: 18px;
+  padding-left: 20px;
+
+  #Logo {
+    height: 19px;
+    width: 19px;
+    padding: 2px 0 0 0;
+    display: inline-block;
+    position: relative;
+    float: left;
+  }
+}
+
+#LeftBarNav {
+  padding: 20px 0px;
+  font-weight: 700;
+  font-size: 14px;
+  > ul.menu {
+    li {
+      a {
+        color: $white;
+        line-height: 1.5em;
+        border-left: 4px solid transparent;
+        transition: background 150ms;
+        &:hover {
+          background: $secondary;
+
+          .fa {
+            color: #f5c47a;
+          }
+        }
+        .fa {
+          margin-right: 10px;
+          margin-top: -3px;
+          width: 25px;
+          color: transparentize($white, .5);
+          font-size: 20px;
+          vertical-align: middle;
+        }
+      }
+
+      &.active {
+        a {
+          background: $secondary;
+          border-left: 4px solid $primary;
+          .fa {
+            color: #f5c47a;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+#LeftBarBottomMenu {
+  background: $secondary;
+  width: 100%;
+  > li {
+    border-top: 2px solid transparent;
+    > a {
+      text-align: center;
+      padding: 10px;
+      i {
+        &.fa {
+          height: 20px;
+          width: 20px;
+
+        }
+      }
+      &::after {
+       display: none; 
+      }
+
+    }
+    &.is-active,
+    &:hover {
+      border-top: 2px solid $primary;
+      background: $tertiary;
+    }
+  }
+}
+
+#UserMenu {
+  top: auto;
+  bottom: 44px;
+}
+
+
+#PageHeading {
+  padding: 30px 0;
+  background: $grey5;
+  border-bottom: 1px solid $grey3;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+  }
+}
+
+.p30 {
+  padding: 30px;
+}
+
+.dashblock {
+  margin-top: 30px;
+  background: $white;
+  border-radius: 5px;
+  overflow: hidden;
+
+
+  h2 {
+    padding: 30px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 30px;
+    background: $grey5;
+    border-bottom: 1px solid $grey3;
+  }
+
+  table {
+    thead {
+      border: none;
+    }
+    td, th {
+      &:first-child {
+        padding-left: 30px;
+      }
+
+      &:last-child {
+        padding-right: 30px;
+      }
+    }
+    tbody, thead, tfoot {
+      border: none;
+    }
+    
+  }
+}
+
+.error {
+  font-weight: 700;
+  color: $alert;
+  text-transform: uppercase;
+  font-size: .85em;
+  padding-bottom: 1rem;
+  display: none;
+
+  &.visible {
+    display: block;
+  }
+}
+
+#UrlsAccordion {
+  .accordion-content {
+    .check_container {
+      border-bottom: 1px solid $grey5;
+
+      li {
+        float: none;      
+        .checkbox {
+          margin-right: 20px;
+        }
+
+        label { 
+          margin-bottom: 0;
+          padding: 1rem;
+        }
+      }
+    }
+    > :last-child {
+      .check_container {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+
+
+
+.websiteDropdown {
+  position: relative;
+  left: 0 !important;
+  top: 0 !important;
+  box-shadow: none;
+  width: 100%;
+}
+
+.crawler_status {
+  &::before {
+    position: relative;
+    content: "";
+    display: inline-block;
+    height: .8em;
+    width: .8em;
+    border-radius: 50%;
+    vertical-align: middle;
+  }
+
+  &::after {
+    position: relative;
+    display: inline-block;
+    font-size: .9em;
+    font-weight: 700;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  &.pending {
+    $c: $primary;
+    &::before {
+      background: $c;
+    }
+    &::after {
+      color: $c;
+      content: "PENDING";
+    }
+  }
+
+  &.started {
+    $c: #990;
+    &::before {
+      background: $c;
+    }
+    &::after {
+      color: $c;
+      content: "STARTED";
+    }
+  }
+
+  &.success {
+    $c: #0d0;
+    &::before {
+      background: $c;
+    }
+    &::after {
+      color: $c;
+      content: "SUCCESS";
+    }
+
+  }
+
+  &.failure {
+    $c: $alert;
+    &::before {
+      background: $c;
+    }
+    &::after {
+      color: $c;
+      content: "FAILURE";
+    }
+
+  }
+
+  &.retry {
+    $c: #505891;
+    &::before {
+      background: $c;
+    }
+    &::after {
+      color: $c;
+      content: "RETRY";
+    }
+  }
+
+  &.revoked {
+    $c: $black;
+    &::before {
+      background: $c;
+    }
+    &::after {
+      color: $c;
+      content: "REVOKED";
+    }
+  }
+}
+
+
+
+code {
+  background: $white;
+  color: $grey1;
+  border: none;
+  display: block;
+  padding: .5rem;
+  padding-left: 1rem;
+  border-left: .5rem solid $grey5;
+
+  + code {
+    margin-top: .5rem;
+  }
+}
+
+
+
+#websiteCategory {
+  .btnStartCrawler {
+    display: block;
+  }
+  .runningInfo {
+    display: none;
+  }
+  .cell.running {
+    .btnStartCrawler {
+      display: none;
+    }
+    .runningInfo {
+      display: block;
+    }
+  }
+
+  .dropdownRow {
+    font-size: .8em;
+    strong {
+      color: $black;
+      font-weight: 400;
+    }  
+    .status {
+      float: right;
+      padding-bottom: 10px;
+      strong {
+        font-weight: 700;
+        background: $primary;
+        border-radius: 4px;
+        padding: 5px 10px; 
+        color: $white;
+        text-transform: uppercase;
+        margin-left: 10px;
+      
+        &.running {
+          background: $orange;
+        }
+      }
+    }
+  }
+}
+
+
+
+.insight {
+  h3 {
+    margin: 0;
+    color: #000;
+  }
+  i.fa {
+    width: 30px;
+    margin-right: 20px;
+    color: $primary;    
+
+    &.success {
+      color: $orange;
+    }
+
+    &.failed {
+      color: $alert;
+    }
+  }
+  span {
+    margin-left: 50px;
+    display: inline-block;
+  }
+
+
+}
+
+
+.dashboardStatusContainer {
+  .dashboardStatus {
+    padding: 10px 30px;
+
+
+    .progress {
+      margin-bottom: 0;
+    }
+
+    + .dashboardStatus {
+      border-top: 1px solid $grey5;
+    }
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+
+.label-tool-tip {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    position: relative;
+    border: 1px solid $grey2;
+    border-radius: 20px;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+    cursor: pointer;
+    color: $grey2;
+    font-size: 14px;
+}
+
+.tooltip {
+  max-width: 25rem;
+  hr {
+    border-bottom: 1px solid $grey1;
+    margin: .5rem auto;
+  }
+}
+
+h2 {
+  .label-tool-tip {
+    height: 28px;
+    width: 28px;
+    line-height: 28px;
+
+    border: 1px solid $grey2;
+    color: $grey2;
+    float: right;
+    font-size: 16px;
+  }
+}

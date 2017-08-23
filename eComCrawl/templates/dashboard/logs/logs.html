@@ -1,0 +1,62 @@
+{% extends "dashboard/logs/base.html" %}
+{% load static %}
+
+{% block Content %}
+  {{block.super}}
+
+  <div class="grid-x outergrid">
+    <div class="cell">
+      <div class="dashblock">
+        <!-- <h2>Workers</h2> -->
+        <div class="p30">
+          {% for each in log_data %}<code>{{each}}</code>{% endfor %}
+
+          {% comment %}          
+          <ul id="UrlsAccordion" class="accordion" data-accordion data-multi-expand="true" data-allow-all-closed="true">
+            <li class="accordion-item" data-accordion-item>
+              <a href="#" class="accordion-title">Worker 1</a>
+              <div class="accordion-content" data-tab-content>
+                <code>{%for each in log_data%}<br> {{each}}<br> {%endfor%}</code>
+              </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#" class="accordion-title">Worker 2</a>
+              <div class="accordion-content" data-tab-content>
+                <code>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</code>
+              </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#" class="accordion-title">Worker 3</a>
+              <div class="accordion-content" data-tab-content>
+                <code>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</code>
+              </div>
+            </li>
+            <li class="accordion-item" data-accordion-item>
+              <a href="#" class="accordion-title">Worker 4</a>
+              <div class="accordion-content" data-tab-content>
+                <code>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</code>
+              </div>
+            </li>
+          </ul>
+          {% endcomment %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

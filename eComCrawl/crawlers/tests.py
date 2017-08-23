@@ -1,7 +1,7 @@
 from django.test import TestCase
 import time
 # Create your tests here.
-from crawl import selenium_getdata
+# from crawl import selenium_getdata
 import json
 from collections import defaultdict
 from db import DB
@@ -47,8 +47,8 @@ def get_items_data(category_url,category_dict,homepage):
     return data
 
 # from docprocessing import json_formatting
-category_urls = get_category_urls()
-cat_data = json.dump(category_urls,open("cat.json",'w'),indent=4)
+# category_urls = get_category_urls()
+# cat_data = json.dump(category_urls,open("cat.json",'w'),indent=4)
 # category_urls = json.load(open('cat.json','r'))
 # data_inlist = get_items_data(category_urls['https://www.myntra.com/']['Men'][1],urls_cat['https://www.myntra.com/'],'https://www.myntra.com/')
 # print (data_inlist)
@@ -62,8 +62,11 @@ cat_data = json.dump(category_urls,open("cat.json",'w'),indent=4)
 # data_inlist = get_items_data(category_urls['http://www.shopclues.com']['Men'][2],urls_cat['http://www.shopclues.com'],'http://www.shopclues.com')
 # data_inlist = get_items_data(category_urls['http://www.jabong.com']['MEN'][2],urls_cat['http://www.jabong.com'],'http://www.jabong.com')
 # import json
-# from pymongo import MongoClient
-# client = MongoClient('localhost',27017)
-# db =client['ecom_db']
-# for index,each in enumerate(db['jabong'].find()):
-#     print (each,index)
+from pymongo import MongoClient
+client = MongoClient('localhost',27017)
+db =client['ecom_db']
+for index,each in enumerate(db['shopclues'].find()):
+    if index <5:
+        print (each,index)
+    else:
+        break

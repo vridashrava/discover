@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Form Buildup for Data">
+  <meta name="author" content="Lapsico">    
+  <title>Form List</title>
+    <label for="url">URL </label><br>
+</head>
+<body>
+  <div>
+    <p>
+    <label for="categories">Categories </label>
+      <select name="categories" id="select">
+        <option value="1"> 1 </option>
+        <option value="2"> 2 </option>
+        <option value="3"> 3 </option>
+        <option value="4"> 4 </option>
+        <option value="5"> 5 </option>
+        <option value="6"> 6 </option>
+
+      </select>
+    </p>
+
+    <form id="form2" name="form2" method="POST" action="/viewform/"> {% csrf_token %}
+      URL:<input type="Text" name="url">
+      URLNAME:<input type="Text" name="urlname">
+      <table>
+        <tr>
+          <td>Category 1:</td>
+          <td><input type="text" name="cat" placeholder="Category 1"></td>
+        </tr>
+      </table>
+
+      <table style="display: none;">
+        <tr>
+          <td>Category 2:</td>
+          <td><input type="text" name="cat" placeholder="Category 2"></td>
+        </tr>
+      </table>
+
+      <table style="display: none;">
+        <tr>
+          <td>Category 3:</td><br>
+          <td><input type="text" name="cat" placeholder="Category 3"></td>
+        </tr>
+      </table>
+
+      <table style="display: none;">
+        <tr>
+          <td>Category 4:</td><br>
+          <td><input type="text" name="cat" placeholder="Category 4"></td>
+        </tr>
+      </table>
+
+      <table style="display: none;">
+        <tr>
+          <td>Category 5:</td><br>
+          <td><input type="text" name="cat" placeholder="Category 5"></td>
+        </tr>
+      </table>
+
+      <table style="display: none;">
+        <tr>
+          <td>Category 6:</td><br>
+          <td><input type="text" name="cat" placeholder="Category 6"></td>
+        </tr>
+      </table>
+
+      <p>
+      <!-- <label for="urlOption">URL Option: </label> -->
+<!--         <select id="hoverOption" name="hoverOption">
+          <option value="True">Hover</option>
+          <option value="clickAndHover">Click and Hover</option>
+          <option value="xpath">Xpath</option>
+        </select>
+
+        <table id="clickXpath" style="display: none;">
+          <tr>
+            <td>Click Xpath:</td>
+            <td><input type="text" name="clickXpath" placeholder="Xpath URL"></td>
+          </tr>
+        </table>
+        <table id="categoryXpath" style="display: none;">
+          <tr>
+            <td>Category Xpath:</td>
+            <td><input type="text" name="categoryXpath" placeholder="Category Xpath"></td>
+          </tr>
+        </table>
+        <br></p>
+      <label>Type:</label><input type="text" name="type">
+      <label>Type:</label><input type="text" name="category_xpath">
+      <input type="input" name="hover" style="display: none;"> -->
+      
+    <fieldset>
+      <legend>URL Option</legend>
+      <select id="urlOption" onchange="hoverChange(this);">
+        <option value="empty">Select an Option</option>
+        <option value="hover">Hover</option>
+        <option value="clickAndHover">Click And Hover</option>
+        <option value="xpath">Xpath</option>
+      </select>
+        
+      <label for="hover">Hover Option</label>
+      <select id="hover">
+      </select>
+      <br><br>Xpath
+      <input type="text" name="xpath" id="xpath">
+    </fieldset>
+
+
+    <p><input type="submit" name="submit" ></p>
+  </form>
+</div>
+
+<script src= "{% static "js/form.js" %}"></script>
+</html>
