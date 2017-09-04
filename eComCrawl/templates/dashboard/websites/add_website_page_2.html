@@ -4,8 +4,8 @@
 {% block Content %}
   {{block.super}}
   
-  <div class="grid-x outergrid">
-    <div class="cell">
+  <div class="grid-x outergrid grid-padding-x">
+    <div class="cell medium-6">
       <div class="dashblock">
         <h2>Select Categories</h2>
         <div class="p30">Verify the links below and submit. You can select the undesired links and remove them.</div>
@@ -25,8 +25,60 @@
             </div>
           </div>
         </form>
+
       </div>
-    </div>  
+    </div>
+    <div class="cell medium-6">
+      <div class="dashblock">
+        <h2>Manually Add Category</h2>
+        <div class="p30">
+          <div class="grid-container">
+            <div class="grid-x grid-padding-x">
+              <div class="cell medium-6">
+                <select id="SelCategory">
+                  
+                  {% for key, value in categories_data.items %}
+                    {% for cat in value %}
+                      <option>{{cat}}</option>
+                    {% endfor %}
+                  {% endfor %}
+                </select>
+
+              </div>
+              <div class="cell medium-6">
+                <input type="text" placeholder="url" id="TxtAddUrl">
+              </div>
+              <div class="cell"> 
+                <button id="BtnAddToCategory" class="button">Add to Category</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dashblock" style="display: block;">
+        <h2>Force Category XPATH</h2>
+          <div class="p30">
+            
+            <form class="inline" method="POST" action="{% url 'add_website_2' %}">
+              {% csrf_token %}
+              <div class="grid-container">
+                {% for key, value in categories_data.items %}
+                  {% for cat in value %}
+                    <div class="grid-x grid-padding-x">
+                      <div class="cell medium-3"><label>{{cat}}:</label></div>
+                      <div class="cell medium-6"><input type="text" name="{{cat}}" placeholder="XPATH of parent container"></div>
+                    </div>
+                  {% endfor %}
+                {% endfor %}
+                    <div class="grid-x grid-padding-x">
+                      <div class="cell medium-3"></div>
+                      <div class="cell medium-6"><button type="submit" class="button" name="verify" value="verify">Verify</button></div>
+                    </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
   </div>
 
 
@@ -37,6 +89,22 @@
 
   <script type="text/javascript">
     var sites = {{categories_data|safe}}; 
+    var i = 0;
+    var categories;
+    for (var site in sites) {
+      categories = sites[site];
+    }
+    // create category dropdown
+    var e_select = $("<select/>", {
+      class: 'category_move',
+      'onchange': 'MoveCategory(this);'
+    });
+    e_select.append("<option>Move To</option>")
+    for (var category in categories) {
+      e_select.append($("<option/>", {
+        text: category
+      }));
+    }
 
     $(document).ready(function() {
       var UrlsAccordion = $("#UrlsAccordion");
@@ -46,50 +114,52 @@
       // for (site in sites) {}
       // var site = site
       var urlsAdded = [];
-      for (var site in sites) {
-        var categories = sites[site];
-        var i = 0;
-        for (var category in categories) {
-
-          var accordianCategory = $("<li/>", {
-            class: "accordion-item",
-            "data-accordion-item": ""
-          });
-
-          accordianCategory.append($("<a/>",{
-            class: "accordion-title",
-            text: category,
-            href: "#"
-          }));
-  
-          var accordionContent = $("<div/>", {
-            class: "accordion-content",
-            "data-tab-content": "",
-          }).appendTo(accordianCategory);
 
 
-          UrlsAccordion.append(accordianCategory);
 
-                    // <ul class="check_container">
-                    //   <li>
-                    //     <input type="checkbox" name="categoryType" id="checkClickHover" value="clickhover">
-                    //     <label for="checkClickHover"><div class="checkbox"></div>Click and Hover</label>
-                    //   </li>
-                    // </ul>
+      console.log(e_select[0].outerHTML);
+
+      for (var category in categories) {
+
+        var accordianCategory = $("<li/>", {
+          class: "accordion-item",
+          id: "Cat-" + category.replace(/\s/g, ''),
+          "data-accordion-item": ""
+        });
+
+        accordianCategory.append($("<a/>",{
+          class: "accordion-title",
+          text: category,
+          href: "#"
+        }));
+
+        var accordionContent = $("<div/>", {
+          class: "accordion-content",
+          "data-tab-content": "",
+        }).appendTo(accordianCategory);
 
 
-          var urls = categories[category];
-          urls.forEach(function(url) {
-            if (urlsAdded.indexOf(url) != 0) {
-              urlsAdded.push(url);
-              i += 1;
-              var html_str = '<div><ul class="check_container"><li><input type="checkbox" class="removeCheckbox" id="removeCheckBox_' + i + '"><label for="removeCheckBox_'+ i +'"><div class="checkbox"></div>' + url + '</label></li></ul><input type="hidden" value="' + url + '" name="' + category + '"></div>';
-              
-              // var html_str = '<div><input type="checkbox" class="removeCheckbox">' + url + '<input type="hidden" value="' + url + '" name="' + category + '"></div>'
-              accordionContent.append(html_str);
-            }
-          });
-        }
+        UrlsAccordion.append(accordianCategory);
+
+                  // <ul class="check_container">
+                  //   <li>
+                  //     <input type="checkbox" name="categoryType" id="checkClickHover" value="clickhover">
+                  //     <label for="checkClickHover"><div class="checkbox"></div>Click and Hover</label>
+                  //   </li>
+                  // </ul>
+
+
+        var urls = categories[category];
+        urls.forEach(function(url) {
+          if (urlsAdded.indexOf(url) != 0) {
+            urlsAdded.push(url);
+            i += 1;
+            var html_str = '<div><ul class="check_container"><li><input type="checkbox" class="removeCheckbox" id="removeCheckBox_' + i + '">' + e_select[0].outerHTML + '<label for="removeCheckBox_'+ i +'"><div class="checkbox"></div>' + url + '</label></li></ul><input type="hidden" value="' + url + '" name="' + category + '"></div>';
+            
+            // var html_str = '<div><input type="checkbox" class="removeCheckbox">' + url + '<input type="hidden" value="' + url + '" name="' + category + '"></div>'
+            accordionContent.append(html_str);
+          }
+        });
       }
 
       var elem = new Foundation.Accordion($("#UrlsAccordion"), {
@@ -102,6 +172,27 @@
         $('.removeCheckbox:checked').closest(".check_container").parent().remove();
       });
 
+    });
+
+    function MoveCategory(e) {
+      var e = $(e);
+      var div = e.closest("ul.check_container").parent();
+      var moveto = e.find(":selected").text();
+      var target = $("#Cat-" + moveto.replace(/\s/g, ''));
+      target.find(".accordion-content").append(div.remove());
+      div.find('input[type="hidden"]').attr("name", moveto);
+    }
+
+    $("#BtnAddToCategory").click(function() {
+      var category = $("#SelCategory").find(":selected").text();
+      var accordionContent = $("#Cat-" + category).find(".accordion-content");
+      var url = $("#TxtAddUrl").val();
+
+      var html_str = '<div><ul class="check_container"><li><input type="checkbox" class="removeCheckbox" id="removeCheckBox_' + i + '">' + e_select[0].outerHTML + '<label for="removeCheckBox_'+ i +'"><div class="checkbox"></div>' + url + '</label></li></ul><input type="hidden" value="' + url + '" name="' + category + '"></div>';
+
+      accordionContent.append(html_str);
+
+      $("#TxtAddUrl").val("");
     });
 
   </script>

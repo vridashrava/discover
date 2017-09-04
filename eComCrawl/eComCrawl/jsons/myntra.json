@@ -1,107 +1,107 @@
 {
-    "pagination": {
-        "type": "infinite_scroll",
-        "paginate_parameters": {
-            "products_path_count": "//*[@id=\"desktopSearchResults\"]/div[1]/section/div[1]/div[1]/span",
-            "scroll_time_wait": 10,
-            "page_listing": 48,
-            "load_more": ""
-        }
-    },
-    "submit": "",
-    "urlname": "myntra",
-    "xpath": "",
     "items": {
+        "hover": true,
+        "xpath_2": "",
+        "xpath": "//*[@id=\"desktopSearchResults\"]/div[2]/section/ul/li",
+        "approach": "click",
         "fields": {
             "listing": {
-                "product_title": {
-                    "xpath": "//*[@id=\"desktopSearchResults\"]/div[2]/section/ul/li[1]/a/div/h2",
-                    "xpath_type": ""
+                "image": {
+                    "xpath_type": "",
+                    "xpath": ""
                 },
                 "url": {
-                    "xpath": "//a",
-                    "xpath_type": "href"
+                    "xpath_type": "href",
+                    "xpath": "//a"
                 },
-                "image": {
-                    "xpath": "",
-                    "xpath_type": ""
+                "product_title": {
+                    "xpath_type": "",
+                    "xpath": ""
                 }
             },
             "product": {
-                "discount": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[1]/p[1]/span",
-                    "xpath_type": "text"
-                },
-                "mrp": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[1]/p[1]/s",
-                    "xpath_type": "text"
-                },
-                "material": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[5]/div/div[3]/p",
-                    "xpath_type": "text"
-                },
-                "shipping_charge": {
-                    "xpath": "",
-                    "xpath_type": ""
-                },
-                "breadcrumb": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[1]",
-                    "xpath_type": "html"
-                },
-                "rating": {
-                    "xpath": "",
-                    "xpath_type": ""
-                },
-                "delivery_time": {
-                    "xpath": "",
-                    "xpath_type": ""
-                },
                 "product_id": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[1]/div[2]/span[1]",
-                    "xpath_type": "text"
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[1]/div[2]/span[1]"
                 },
-                "review_url": {
-                    "xpath": "",
-                    "xpath_type": ""
-                },
-                "images": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[1]/div[1]/div[2]/div[2]/img",
-                    "xpath_type": "src"
-                },
-                "thumbnail": {
-                    "xpath": "",
-                    "xpath_type": ""
-                },
-                "color": {
-                    "xpath": "",
-                    "xpath_type": ""
-                },
-                "sizes": {
-                    "xpath": "//*[@id=\"sizeButtonsContainer\"]/div[2]",
-                    "xpath_type": "html"
+                "discount": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[1]/p[1]/span"
                 },
                 "specifications": {
-                    "xpath": "",
-                    "xpath_type": ""
-                },
-                "description": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[5]/div/div[1]",
-                    "xpath_type": "html"
+                    "xpath_type": "",
+                    "xpath": ""
                 },
                 "product_name": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[1]/h1",
-                    "xpath_type": "text"
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[1]/h1"
+                },
+                "material": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[5]/div/div[3]/p"
+                },
+                "breadcrumb": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[1]"
                 },
                 "selling_price": {
-                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[1]/p[2]/strong",
-                    "xpath_type": "text"
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[1]/p[2]/strong"
+                },
+                "rating": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "mrp": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[1]/p[1]/s"
+                },
+                "shipping_charge": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "description": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[2]/div[5]/div/div[1]"
+                },
+                "images": {
+                    "xpath_type": "src",
+                    "xpath": "//*[@id=\"mountRoot\"]/div/div/main/div[2]/div[1]/div[1]/div[2]/div[2]/img"
+                },
+                "color": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "review_url": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "thumbnail": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "delivery_time": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "sizes": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"sizeButtonsContainer\"]/div[2]"
                 }
             }
-        },
-        "xpath": "//*[@id=\"desktopSearchResults\"]/div[2]/section/ul/li",
-        "approach": "click",
-        "hover": true
+        }
     },
+    "pagination": {
+        "type": "step_scroll",
+        "paginate_parameters": {
+            "scroll_time_wait": 10,
+            "page_listing": 48,
+            "load_more_xpath": "//*[@id=\"desktopSearchResults\"]/div[2]/section/div[2]/div",
+            "products_path_count": "//*[@id=\"desktopSearchResults\"]/div[1]/section/div[1]/div[1]/span"
+        }
+    },
+    "urlname": "myntra",
+    "submit": "",
     "type": "category",
     "cat": [
         "Men",
@@ -109,6 +109,7 @@
         "Kids",
         "Home & Living"
     ],
+    "url": "https://www.myntra.com/",
     "categoryType": "hover",
-    "url": "https://www.myntra.com/"
+    "xpath": ""
 }

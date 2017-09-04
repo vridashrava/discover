@@ -1,0 +1,133 @@
+{
+    "submit": "",
+    "category_xpath": "//*[@id=\"navbar\"]/ul/li[1]/a/span",
+    "category_count": "7",
+    "categories": [
+        "/html/body/div[4]/div/div/nav/div/ul/li[4]/a/span",
+        "/html/body/div[4]/div/div/nav/div/ul/li[1]/a/span",
+        "/html/body/div[4]/div/div/nav/div/ul/li[3]/a/span",
+        "/html/body/div[4]/div/div/nav/div/ul/li[7]/a/span",
+        "/html/body/div[4]/div/div/nav/div/ul/li[2]/a/span",
+        "/html/body/div[4]/div/div/nav/div/ul/li[5]/a/span",
+        "/html/body/div[4]/div/div/nav/div/ul/li[6]/a/span"
+    ],
+    "items": {
+        "xpath2": "",
+        "fields": {
+            "listing": {
+                "product_title": {
+                    "xpath2": "",
+                    "xpath_type": "text",
+                    "xpath": "//div/div[3]/div[1]/h4/a",
+                    "xpath_type2": ""
+                },
+                "image": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "url": {
+                    "xpath2": "//div[2]/div[3]/div[1]/h4/a",
+                    "xpath_type": "href",
+                    "xpath": "//div[2]/div[3]/div[1]/h4/a",
+                    "xpath_type2": "href"
+                }
+            },
+            "product": {
+                "breadcrumb": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"asm-ezone\"]/body/div[5]/section[1]/div/div/div/div[1]/ol"
+                },
+                "discount": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-overview\"]/div/div/div[1]/div/div[2]/div/div[1]/div/span[3]"
+                },
+                "delivery_time": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "sizes": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "rating": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "mrp": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-overview\"]/div/div/div[1]/div/div[2]/div/div[1]/div/span[2]"
+                },
+                "selling_price": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-overview\"]/div/div/div[1]/div/div[2]/div/div[1]/div/span[1]"
+                },
+                "color": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "review_url": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "material": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "product_id": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "shipping_charge": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "thumbnail": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "images": {
+                    "xpath_type": "src",
+                    "xpath": "//*[@id=\"__VIEWxSTATE\"]/div/div[2]/div[4]/img"
+                },
+                "product_name": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-overview\"]/div/div/div[1]/div/div[2]/div/h1"
+                },
+                "specifications": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"product-specifications\"]/ul"
+                },
+                "description": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-details-section\"]/div/ul/li"
+                }
+            }
+        },
+        "hover": true,
+        "approach": "click",
+        "xpath": "//*[@id=\"resultsList\"]/li"
+    },
+    "urlname": "ezoneonline",
+    "cat_names": [
+        "Home Entertainment",
+        "Small Appliances",
+        "Laptops & Computers",
+        "Photography",
+        "Personal Care",
+        "Phones & Tablets",
+        "Home Appliances"
+    ],
+    "pagination": {
+        "type": "infinite_scroll",
+        "paginate_parameters": {
+            "load_more_xpath": "",
+            "scroll_time_wait": 15,
+            "page_listing": 21,
+            "products_path_count": "//*[@id=\"asm-ezone\"]/body/div[5]/section[2]/div/div/div[2]/div/div/div[3]/div/h2/span"
+        }
+    },
+    "xpath": "",
+    "categoryType": "hover",
+    "url": "http://www.ezoneonline.in/",
+    "type": "category"
+}

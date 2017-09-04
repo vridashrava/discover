@@ -23,15 +23,32 @@ def get_category_urls(website_name,urls_cat):
     print (url)
     category_urls[website_name] = defaultdict(list)
     if url_settings['type'] == 'category':
-        categories_list = url_settings['categories']
-        # testing only one category for now
-        for category in categories_list:    
-            category_urls[website_name][category] += sg.get_categories(url,category,url_settings)
+        category_urls[website_name] = sg.get_categories(url_settings)
+    elif url_settings["type"] == "sitemap":
+        category_urls[website_name] = sg.get_sitemap_urls(url_settings)
     sg.close_sel()
     # category_urls = dict(category_urls)
     return [url,category_urls]
 
 # print (json.dumps(get_category_urls(),indent=4))
+def get_category_name(category_dict):
+  category_urls = {}
+  sg = selenium_getdata()
+  url = category_dict.get("url","")
+  if "sitemap_url" in category_dict:
+    url = category_dict.get("sitemap_url","")
+  # urls_cat = [[url,url_settings] for url,url_settings in urls_cat.items()]
+  # url,url_settings = urls_cat[0]
+  try:  
+    sg(url)
+  except Exception as e:
+    print("Error in opening URL",e)
+    return {}
+  time.sleep(2)
+  category_name_xpath = sg.get_category_names(category_dict)
+  sg.close_sel()
+  # category_urls = dict(category_urls)
+  return category_name_xpath
 
 def get_items_data(category_url,category_dict,homepage,test):
     # gets all the items in category page
@@ -92,4 +109,7 @@ def crawl_link(category_url,category,homepage,test=False):
 def crawl_category(website_name,data_template):
     data = get_category_urls(website_name,data_template)
     return data[1]
-
+@app.task
+def get_names(category_dict):
+    category_name_xpath = get_category_name(category_dict)
+    return category_name_xpath

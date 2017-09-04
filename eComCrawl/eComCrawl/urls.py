@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from panel.views import Dashboard, AddWebsite, Websites, EditWebsite, WebsiteCategory, MonitorCrawlers, MonitorCrawlersApi, Logs, StartCrawl, resetNewWebste, Recent
+from panel.views import Dashboard, AddWebsite, AddWebsiteGenerateCategories, AddWebsiteGenerateCategoriesSiteMap, Page2Verify, Websites, EditWebsite, WebsiteCategory, MonitorCrawlers, MonitorCrawlersApi, Logs, StartCrawl, resetNewWebste, Recent
 from crawlers.views import form,save_xpath_data
 
 urlpatterns = [
@@ -31,6 +31,11 @@ urlpatterns = [
     url(r'^dashboard/websites/new/3$', AddWebsite.as_view(subpage = "3"), name="add_website_3"),
     url(r'^dashboard/websites/new/4$', AddWebsite.as_view(subpage = "4"), name="add_website_4"),
     url(r'^dashboard/websites/$', Websites.as_view(), name="websites"),
+
+    url(r'^dashboard/websites/new/page1_generate_categories$', AddWebsiteGenerateCategories.as_view(), name="add_website_generate_categories"),
+    url(r'^dashboard/websites/new/page1_generate_categories_sitemap$', AddWebsiteGenerateCategoriesSiteMap.as_view(), name="add_website_generate_categories_sitemap"),
+
+    url(r'^dashboard/websites/page_2_verify$', Page2Verify.as_view(), name="page_2_verify"),
 
 
     url(r'^dashboard/websites/edit/(?P<website>.+)$', EditWebsite.as_view(), name="edit_website"),

@@ -32,7 +32,9 @@ class DB(object):
 				self.insert_data(cursor,data_dict)
 		except Exception as e:
 			print ("Error",e)
-		return
+		return;
+	def get_categorical_data(self,cursor,url,data_dict):
+		return cursor.find({url:{'$exists':True}},data_dict)
 
 
 

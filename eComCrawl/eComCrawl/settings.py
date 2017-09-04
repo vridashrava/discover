@@ -25,7 +25,7 @@ SECRET_KEY = '4^bik@d71=l!wu4u!2r)4dv3py^^y5$nz2gzsp7sg*o8v^rxon'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.110', 'localhost', "192.168.100.15","192.168.0.105","127.0.0.1"]
+ALLOWED_HOSTS = ['192.168.0.108', 'localhost', "192.168.100.15","192.168.0.105","127.0.0.1"]
 
 
 # Application definition
@@ -124,7 +124,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR,"static"),]
 
-CELERY_BROKER_URL = "redis://192.168.0.105:6379/0"
+CELERY_BROKER_URL = "redis://192.168.0.108:6379/0"
 CELERY_RESULT_BACKEND = "redis://"
 CELERY_BROKER_CONNECTION_TIMEOUT = 20
 CELERY_WORKER_PREFETCH_MULTIPLIER = 5

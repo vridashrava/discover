@@ -268,22 +268,37 @@ html, body {
 /* line 274, ../scss/design.scss */
 #UrlsAccordion .accordion-content .check_container li {
   float: none;
+  display: block;
 }
-/* line 276, ../scss/design.scss */
+/* line 277, ../scss/design.scss */
 #UrlsAccordion .accordion-content .check_container li .checkbox {
   margin-right: 20px;
 }
-/* line 280, ../scss/design.scss */
+/* line 281, ../scss/design.scss */
 #UrlsAccordion .accordion-content .check_container li label {
   margin-bottom: 0;
   padding: 1rem;
+  width: calc(100% - 240px);
 }
-/* line 287, ../scss/design.scss */
+/* line 288, ../scss/design.scss */
+#UrlsAccordion .accordion-content .check_container li .category_move {
+  float: right;
+  width: 200px;
+  margin-right: 20px;
+  margin-top: 5px;
+  margin-bottom: 0;
+  display: none;
+}
+/* line 297, ../scss/design.scss */
+#UrlsAccordion .accordion-content .check_container li:hover .category_move {
+  display: block;
+}
+/* line 304, ../scss/design.scss */
 #UrlsAccordion .accordion-content > :last-child .check_container {
   border-bottom: none;
 }
 
-/* line 297, ../scss/design.scss */
+/* line 314, ../scss/design.scss */
 .websiteDropdown {
   position: relative;
   left: 0 !important;
@@ -292,7 +307,7 @@ html, body {
   width: 100%;
 }
 
-/* line 306, ../scss/design.scss */
+/* line 323, ../scss/design.scss */
 .crawler_status::before {
   position: relative;
   content: "";
@@ -302,7 +317,7 @@ html, body {
   border-radius: 50%;
   vertical-align: middle;
 }
-/* line 316, ../scss/design.scss */
+/* line 333, ../scss/design.scss */
 .crawler_status::after {
   position: relative;
   display: inline-block;
@@ -311,62 +326,62 @@ html, body {
   margin-left: 10px;
   vertical-align: middle;
 }
-/* line 327, ../scss/design.scss */
+/* line 344, ../scss/design.scss */
 .crawler_status.pending::before {
   background: #5ca5f1;
 }
-/* line 330, ../scss/design.scss */
+/* line 347, ../scss/design.scss */
 .crawler_status.pending::after {
   color: #5ca5f1;
   content: "PENDING";
 }
-/* line 338, ../scss/design.scss */
+/* line 355, ../scss/design.scss */
 .crawler_status.started::before {
   background: #990;
 }
-/* line 341, ../scss/design.scss */
+/* line 358, ../scss/design.scss */
 .crawler_status.started::after {
   color: #990;
   content: "STARTED";
 }
-/* line 349, ../scss/design.scss */
+/* line 366, ../scss/design.scss */
 .crawler_status.success::before {
   background: #0d0;
 }
-/* line 352, ../scss/design.scss */
+/* line 369, ../scss/design.scss */
 .crawler_status.success::after {
   color: #0d0;
   content: "SUCCESS";
 }
-/* line 361, ../scss/design.scss */
+/* line 378, ../scss/design.scss */
 .crawler_status.failure::before {
   background: #ec5840;
 }
-/* line 364, ../scss/design.scss */
+/* line 381, ../scss/design.scss */
 .crawler_status.failure::after {
   color: #ec5840;
   content: "FAILURE";
 }
-/* line 373, ../scss/design.scss */
+/* line 390, ../scss/design.scss */
 .crawler_status.retry::before {
   background: #505891;
 }
-/* line 376, ../scss/design.scss */
+/* line 393, ../scss/design.scss */
 .crawler_status.retry::after {
   color: #505891;
   content: "RETRY";
 }
-/* line 384, ../scss/design.scss */
+/* line 401, ../scss/design.scss */
 .crawler_status.revoked::before {
   background: #000;
 }
-/* line 387, ../scss/design.scss */
+/* line 404, ../scss/design.scss */
 .crawler_status.revoked::after {
   color: #000;
   content: "REVOKED";
 }
 
-/* line 396, ../scss/design.scss */
+/* line 413, ../scss/design.scss */
 code {
   background: #FFF;
   color: #333;
@@ -376,42 +391,42 @@ code {
   padding-left: 1rem;
   border-left: 0.5rem solid #eef0f7;
 }
-/* line 405, ../scss/design.scss */
+/* line 422, ../scss/design.scss */
 code + code {
   margin-top: .5rem;
 }
 
-/* line 413, ../scss/design.scss */
+/* line 430, ../scss/design.scss */
 #websiteCategory .btnStartCrawler {
   display: block;
 }
-/* line 416, ../scss/design.scss */
+/* line 433, ../scss/design.scss */
 #websiteCategory .runningInfo {
   display: none;
 }
-/* line 420, ../scss/design.scss */
+/* line 437, ../scss/design.scss */
 #websiteCategory .cell.running .btnStartCrawler {
   display: none;
 }
-/* line 423, ../scss/design.scss */
+/* line 440, ../scss/design.scss */
 #websiteCategory .cell.running .runningInfo {
   display: block;
 }
-/* line 428, ../scss/design.scss */
+/* line 445, ../scss/design.scss */
 #websiteCategory .dropdownRow {
   font-size: .8em;
 }
-/* line 430, ../scss/design.scss */
+/* line 447, ../scss/design.scss */
 #websiteCategory .dropdownRow strong {
   color: #000;
   font-weight: 400;
 }
-/* line 434, ../scss/design.scss */
+/* line 451, ../scss/design.scss */
 #websiteCategory .dropdownRow .status {
   float: right;
   padding-bottom: 10px;
 }
-/* line 437, ../scss/design.scss */
+/* line 454, ../scss/design.scss */
 #websiteCategory .dropdownRow .status strong {
   font-weight: 700;
   background: #5ca5f1;
@@ -421,55 +436,55 @@ code + code {
   text-transform: uppercase;
   margin-left: 10px;
 }
-/* line 446, ../scss/design.scss */
+/* line 463, ../scss/design.scss */
 #websiteCategory .dropdownRow .status strong.running {
   background: #fa9743;
 }
 
-/* line 457, ../scss/design.scss */
+/* line 474, ../scss/design.scss */
 .insight h3 {
   margin: 0;
   color: #000;
 }
-/* line 461, ../scss/design.scss */
+/* line 478, ../scss/design.scss */
 .insight i.fa {
   width: 30px;
   margin-right: 20px;
   color: #5ca5f1;
 }
-/* line 466, ../scss/design.scss */
+/* line 483, ../scss/design.scss */
 .insight i.fa.success {
   color: #fa9743;
 }
-/* line 470, ../scss/design.scss */
+/* line 487, ../scss/design.scss */
 .insight i.fa.failed {
   color: #ec5840;
 }
-/* line 474, ../scss/design.scss */
+/* line 491, ../scss/design.scss */
 .insight span {
   margin-left: 50px;
   display: inline-block;
 }
 
-/* line 484, ../scss/design.scss */
+/* line 501, ../scss/design.scss */
 .dashboardStatusContainer .dashboardStatus {
   padding: 10px 30px;
 }
-/* line 488, ../scss/design.scss */
+/* line 505, ../scss/design.scss */
 .dashboardStatusContainer .dashboardStatus .progress {
   margin-bottom: 0;
 }
-/* line 492, ../scss/design.scss */
+/* line 509, ../scss/design.scss */
 .dashboardStatusContainer .dashboardStatus + .dashboardStatus {
   border-top: 1px solid #eef0f7;
 }
 
-/* line 498, ../scss/design.scss */
+/* line 515, ../scss/design.scss */
 .uppercase {
   text-transform: uppercase;
 }
 
-/* line 503, ../scss/design.scss */
+/* line 520, ../scss/design.scss */
 .label-tool-tip {
   height: 20px;
   width: 20px;
@@ -486,17 +501,17 @@ code + code {
   font-size: 14px;
 }
 
-/* line 519, ../scss/design.scss */
+/* line 536, ../scss/design.scss */
 .tooltip {
   max-width: 25rem;
 }
-/* line 521, ../scss/design.scss */
+/* line 538, ../scss/design.scss */
 .tooltip hr {
   border-bottom: 1px solid #333;
   margin: .5rem auto;
 }
 
-/* line 528, ../scss/design.scss */
+/* line 545, ../scss/design.scss */
 h2 .label-tool-tip {
   height: 28px;
   width: 28px;
@@ -505,4 +520,20 @@ h2 .label-tool-tip {
   color: #666;
   float: right;
   font-size: 16px;
+}
+
+/* line 559, ../scss/design.scss */
+.tabs .tabs-title a {
+  text-align: center;
+  min-width: 100px;
+  font-size: 13px;
+}
+/* line 565, ../scss/design.scss */
+.tabs .tabs-title > a:focus,
+.tabs .tabs-title > a[aria-selected='true'] {
+  font-weight: 700;
+  color: #5ca5f1;
+  border-bottom: 2px solid #5ca5f1;
+  outline: none;
+  background: #FFF;
 }

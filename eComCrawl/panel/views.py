@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from crawlers.views import viewform, tasksOutput,viewdata,clearSessionData
+from crawlers.views import viewform, tasksOutput,viewdata,clearSessionData,get_category_names
 from django.http.response import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, JsonResponse
@@ -22,6 +22,36 @@ class Dashboard(TemplateView):
       "page": "dashboard"
     })
 
+
+class Page2Verify(View):
+  def post(self, request, *args, **kwargs):
+    print (request.POST)
+    return HttpResponse("ok")
+
+class AddWebsiteGenerateCategories(View):
+  def post(self, request, *args, **kwargs):
+    # print (request.POST)
+    request.POST._mutable = True
+    # post_data = request.POST.copy()
+    r = get_category_names(request.POST)
+    # r = {"MEN-SALE": "xpath_for_men_sale", "WOMEN-SALE": "xpath_for_women_sale"}
+    return HttpResponse(json.dumps(r))
+
+class AddWebsiteGenerateCategoriesSiteMap(View):
+  def post(self, request, *args, **kwargs):
+    request.POST._mutable = True
+    # post_data = request.POST.copy()
+
+
+    # @ASHMIT HERE>
+    r = get_category_names(request.POST)
+    # print ("categories_sitemap",request)
+    # r = {"MEN-SALE": "xpath_for_men_sale", "WOMEN-SALE": "xpath_for_women_sale"}
+
+
+
+    return HttpResponse(json.dumps(r))
+
 class AddWebsite(TemplateView):
   template_name = 'dashboard/websites/add_website.html'
   subpage = "1"
@@ -38,8 +68,7 @@ class AddWebsite(TemplateView):
     if self.subpage == "2":
       # print(request.session["page_1_data"])
       self.template_name = 'dashboard/websites/add_website_page_2.html'
-
-      # categories_data = {'ajio': {'MEN-SALE': ['https://www.ajio.com/c/men', 'https://www.ajio.com/', 'https://www.ajio.com/', 'https://www.ajio.com/s/mens-flat-50-80-off', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/s/nike-men-brand', 'https://www.ajio.com/s/men-vans-footwear', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/s/nike-men-brand', 'https://www.ajio.com/capsule/newin/men', 'https://www.ajio.com/s/men-newin-clothing', 'https://www.ajio.com/s/fresh-arrivals-accessories-and-footwear', 'https://www.ajio.com/s/international-brands-men', 'https://www.ajio.com/c/830216', 'https://www.ajio.com/c/830216010', 'https://www.ajio.com/c/830216001', 'https://www.ajio.com/c/830216013', 'https://www.ajio.com/c/830216002', 'https://www.ajio.com/c/830216015', 'https://www.ajio.com/c/830216011', 'https://www.ajio.com/c/830216003', 'https://www.ajio.com/c/830216004', 'https://www.ajio.com/c/830216014', 'https://www.ajio.com/c/830207', 'https://www.ajio.com/c/830207006', 'https://www.ajio.com/c/830207001', 'https://www.ajio.com/c/830207007', 'https://www.ajio.com/c/830207010', 'https://www.ajio.com/c/830207008?q=%3Arelevance', 'https://www.ajio.com/s/men-accessories-brands', 'https://www.ajio.com/c/830201001', 'https://www.ajio.com/c/830201', 'https://www.ajio.com/c/830201007', 'https://www.ajio.com/c/830202001', 'https://www.ajio.com/c/830205', 'https://www.ajio.com/c/830202002', 'https://www.ajio.com/c/830204003', 'https://www.ajio.com/c/men-capsule-collection', 'https://www.ajio.com/c/830212', 'https://www.ajio.com/c/830211', 'https://www.ajio.com/c/830211002', 'https://www.ajio.com/s/men-trunks-boxers', 'https://www.ajio.com/c/830211006', 'https://www.ajio.com/', 'https://www.ajio.com/s/eoss-men-impulse-steal-bags', 'https://www.ajio.com/s/mens-footwear-under-1499', 'https://www.ajio.com/s/jeans-under-1199', 'https://www.ajio.com/s/shorts-three-fourths-under-699', 'https://www.ajio.com/s/tees-clearance-sale', 'https://www.ajio.com/', 'https://www.ajio.com/', 'https://www.ajio.com/s/backpacks-and-utility-bags', 'https://www.ajio.com/c/men-brogues', 'https://www.ajio.com/s/cargos-chinos', 'https://www.ajio.com/s/men-shoe', 'https://www.ajio.com/c/men-denim-shirts-collection', 'https://www.ajio.com/c/graphic-shirts', 'https://www.ajio.com/c/830216003', 'https://www.ajio.com/c/Doubt-Is-Out', 'https://www.ajio.com/s/men-ajio-own-brand', 'https://www.ajio.com/s/international-brands-men', 'https://www.ajio.com/b/alcott', 'https://www.ajio.com/b/kaporal', 'https://www.ajio.com/b/native-youth', 'https://www.ajio.com/s/men-point-zero', 'https://www.ajio.com/b/tom-tailor', 'https://www.ajio.com/s/men-exclusive-brands', 'https://www.ajio.com/b/acuto', 'https://www.ajio.com/b/antiferro', 'https://www.ajio.com/s/men-dnmx-brand', 'https://www.ajio.com/b/funk', 'https://www.ajio.com/b/garcon', 'https://www.ajio.com/s/hats-off-accessories', 'https://www.ajio.com/b/netplay', 'https://www.ajio.com/b/piaffe', 'https://www.ajio.com/s/men-teamspirit-brand', 'https://www.ajio.com/c/830216', 'https://www.ajio.com/b/celio', 'https://www.ajio.com/s/duke-men', 'https://www.ajio.com/b/flying-machine', 'https://www.ajio.com/b/gas', 'https://www.ajio.com/b/indian-terrain', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/b/john-players', 'https://www.ajio.com/s/men-killer-western-wear', 'https://www.ajio.com/s/men-lee', 'https://www.ajio.com/s/men-levis-western-wear', 'https://www.ajio.com/s/men-mark-spencer', 'https://www.ajio.com/s/pepe-jeans-men', 'https://www.ajio.com/b/spykar', 'https://www.ajio.com/s/united-colours-benetton', 'https://www.ajio.com/b/us-polo', 'https://www.ajio.com/s/men-wills-lifestyle', 'https://www.ajio.com/s/men-wrangler-western-wear', 'https://www.ajio.com/c/830211', 'https://www.ajio.com/s/hanes-innerwear-men', 'https://www.ajio.com/s/men-levis-innerwear', 'https://www.ajio.com/s/playboy-men', 'https://www.ajio.com/s/undercolors-of-benetton-innerwear', 'https://www.ajio.com/s/us-polo-innerwear', 'https://www.ajio.com/s/men-accessories-brands', 'https://www.ajio.com/s/men-eristonaman-accessories', 'https://www.ajio.com/s/flying-machine', 'https://www.ajio.com/b/mtv', 'https://www.ajio.com/s/puma-men-accessories', 'https://www.ajio.com/b/skybags', 'https://www.ajio.com/s/men-teakwood-leathers-accessories', 'https://www.ajio.com/s/tommy-hilfiger', 'https://www.ajio.com/s/men-us-polo-brand', 'https://www.ajio.com/s/men-wildcraft-accessories', 'https://www.ajio.com/s/men-wrangler-accessories', 'https://www.ajio.com/c/830207', 'https://www.ajio.com/s/men-carlton-london-footwear', 'https://www.ajio.com/s/crocs', 'https://www.ajio.com/s/famozi-footwear', 'https://www.ajio.com/b/knotty-derby', 'https://www.ajio.com/b/lee-cooper', 'https://www.ajio.com/b/modello-domani', 'https://www.ajio.com/b/muddman', 'https://www.ajio.com/s/men-puma-footwear-brand', 'https://www.ajio.com/b/red-tape', 'https://www.ajio.com/s/men-skechers-collection', 'https://www.ajio.com/b/sole-threads', 'https://www.ajio.com/s/men-ucb-footwear', 'https://www.ajio.com/s/men-vans-footwear', 'https://www.ajio.com/help/BrandListing']}}
+      categories_data = {'ajio': {'MEN-SALE': ['https://www.ajio.com/c/men', 'https://www.ajio.com/', 'https://www.ajio.com/', 'https://www.ajio.com/s/mens-flat-50-80-off', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/s/nike-men-brand', 'https://www.ajio.com/s/men-vans-footwear', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/s/nike-men-brand', 'https://www.ajio.com/capsule/newin/men', 'https://www.ajio.com/s/men-newin-clothing', 'https://www.ajio.com/s/fresh-arrivals-accessories-and-footwear', 'https://www.ajio.com/s/international-brands-men', 'https://www.ajio.com/c/830216', 'https://www.ajio.com/c/830216010', 'https://www.ajio.com/c/830216001', 'https://www.ajio.com/c/830216013', 'https://www.ajio.com/c/830216002', 'https://www.ajio.com/c/830216015', 'https://www.ajio.com/c/830216011', 'https://www.ajio.com/c/830216003', 'https://www.ajio.com/c/830216004', 'https://www.ajio.com/c/830216014', 'https://www.ajio.com/c/830207', 'https://www.ajio.com/c/830207006', 'https://www.ajio.com/c/830207001', 'https://www.ajio.com/c/830207007', 'https://www.ajio.com/c/830207010', 'https://www.ajio.com/c/830207008?q=%3Arelevance', 'https://www.ajio.com/s/men-accessories-brands', 'https://www.ajio.com/c/830201001', 'https://www.ajio.com/c/830201', 'https://www.ajio.com/c/830201007', 'https://www.ajio.com/c/830202001', 'https://www.ajio.com/c/830205', 'https://www.ajio.com/c/830202002', 'https://www.ajio.com/c/830204003', 'https://www.ajio.com/c/men-capsule-collection', 'https://www.ajio.com/c/830212', 'https://www.ajio.com/c/830211', 'https://www.ajio.com/c/830211002', 'https://www.ajio.com/s/men-trunks-boxers', 'https://www.ajio.com/c/830211006', 'https://www.ajio.com/', 'https://www.ajio.com/s/eoss-men-impulse-steal-bags', 'https://www.ajio.com/s/mens-footwear-under-1499', 'https://www.ajio.com/s/jeans-under-1199', 'https://www.ajio.com/s/shorts-three-fourths-under-699', 'https://www.ajio.com/s/tees-clearance-sale', 'https://www.ajio.com/', 'https://www.ajio.com/', 'https://www.ajio.com/s/backpacks-and-utility-bags', 'https://www.ajio.com/c/men-brogues', 'https://www.ajio.com/s/cargos-chinos', 'https://www.ajio.com/s/men-shoe', 'https://www.ajio.com/c/men-denim-shirts-collection', 'https://www.ajio.com/c/graphic-shirts', 'https://www.ajio.com/c/830216003', 'https://www.ajio.com/c/Doubt-Is-Out', 'https://www.ajio.com/s/men-ajio-own-brand', 'https://www.ajio.com/s/international-brands-men', 'https://www.ajio.com/b/alcott', 'https://www.ajio.com/b/kaporal', 'https://www.ajio.com/b/native-youth', 'https://www.ajio.com/s/men-point-zero', 'https://www.ajio.com/b/tom-tailor', 'https://www.ajio.com/s/men-exclusive-brands', 'https://www.ajio.com/b/acuto', 'https://www.ajio.com/b/antiferro', 'https://www.ajio.com/s/men-dnmx-brand', 'https://www.ajio.com/b/funk', 'https://www.ajio.com/b/garcon', 'https://www.ajio.com/s/hats-off-accessories', 'https://www.ajio.com/b/netplay', 'https://www.ajio.com/b/piaffe', 'https://www.ajio.com/s/men-teamspirit-brand', 'https://www.ajio.com/c/830216', 'https://www.ajio.com/b/celio', 'https://www.ajio.com/s/duke-men', 'https://www.ajio.com/b/flying-machine', 'https://www.ajio.com/b/gas', 'https://www.ajio.com/b/indian-terrain', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/b/john-players', 'https://www.ajio.com/s/men-killer-western-wear', 'https://www.ajio.com/s/men-lee', 'https://www.ajio.com/s/men-levis-western-wear', 'https://www.ajio.com/s/men-mark-spencer', 'https://www.ajio.com/s/pepe-jeans-men', 'https://www.ajio.com/b/spykar', 'https://www.ajio.com/s/united-colours-benetton', 'https://www.ajio.com/b/us-polo', 'https://www.ajio.com/s/men-wills-lifestyle', 'https://www.ajio.com/s/men-wrangler-western-wear', 'https://www.ajio.com/c/830211', 'https://www.ajio.com/s/hanes-innerwear-men', 'https://www.ajio.com/s/men-levis-innerwear', 'https://www.ajio.com/s/playboy-men', 'https://www.ajio.com/s/undercolors-of-benetton-innerwear', 'https://www.ajio.com/s/us-polo-innerwear', 'https://www.ajio.com/s/men-accessories-brands', 'https://www.ajio.com/s/men-eristonaman-accessories', 'https://www.ajio.com/s/flying-machine', 'https://www.ajio.com/b/mtv', 'https://www.ajio.com/s/puma-men-accessories', 'https://www.ajio.com/b/skybags', 'https://www.ajio.com/s/men-teakwood-leathers-accessories', 'https://www.ajio.com/s/tommy-hilfiger', 'https://www.ajio.com/s/men-us-polo-brand', 'https://www.ajio.com/s/men-wildcraft-accessories', 'https://www.ajio.com/s/men-wrangler-accessories', 'https://www.ajio.com/c/830207', 'https://www.ajio.com/s/men-carlton-london-footwear', 'https://www.ajio.com/s/crocs', 'https://www.ajio.com/s/famozi-footwear', 'https://www.ajio.com/b/knotty-derby', 'https://www.ajio.com/b/lee-cooper', 'https://www.ajio.com/b/modello-domani', 'https://www.ajio.com/b/muddman', 'https://www.ajio.com/s/men-puma-footwear-brand', 'https://www.ajio.com/b/red-tape', 'https://www.ajio.com/s/men-skechers-collection', 'https://www.ajio.com/b/sole-threads', 'https://www.ajio.com/s/men-ucb-footwear', 'https://www.ajio.com/s/men-vans-footwear', 'https://www.ajio.com/help/BrandListing'], 'WOMEN-SALE': ['asdf', 'ddd']}}
 
     if self.subpage == "3":
       # print(request.session["page_2_data"])
@@ -77,10 +106,35 @@ class AddWebsite(TemplateView):
       r["categories"] = request.POST.getlist("cat")
       if "cat" in r:
         del r["cat"]
-      request.session["page_1_data"] = r
-      # print ("r",r)
+
+
+      # Differentiate between sitemap and normal website
+      if "urlname" in request.POST:
+        website_type = "website"
+      elif "sitemap_urlname" in request.POST:
+        website_type = "sitemap"
+
+
+        # sitemap_category_name_3
       categories_data = viewform(request.POST)
-      if bool(categories_data[request.POST.get("urlname")]) == False:
+      # categories_data = {'ajio': {'MEN-SALE': ['https://www.ajio.com/c/men', 'https://www.ajio.com/', 'https://www.ajio.com/', 'https://www.ajio.com/s/mens-flat-50-80-off', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/s/nike-men-brand', 'https://www.ajio.com/s/men-vans-footwear', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/s/nike-men-brand', 'https://www.ajio.com/capsule/newin/men', 'https://www.ajio.com/s/men-newin-clothing', 'https://www.ajio.com/s/fresh-arrivals-accessories-and-footwear', 'https://www.ajio.com/s/international-brands-men', 'https://www.ajio.com/c/830216', 'https://www.ajio.com/c/830216010', 'https://www.ajio.com/c/830216001', 'https://www.ajio.com/c/830216013', 'https://www.ajio.com/c/830216002', 'https://www.ajio.com/c/830216015', 'https://www.ajio.com/c/830216011', 'https://www.ajio.com/c/830216003', 'https://www.ajio.com/c/830216004', 'https://www.ajio.com/c/830216014', 'https://www.ajio.com/c/830207', 'https://www.ajio.com/c/830207006', 'https://www.ajio.com/c/830207001', 'https://www.ajio.com/c/830207007', 'https://www.ajio.com/c/830207010', 'https://www.ajio.com/c/830207008?q=%3Arelevance', 'https://www.ajio.com/s/men-accessories-brands', 'https://www.ajio.com/c/830201001', 'https://www.ajio.com/c/830201', 'https://www.ajio.com/c/830201007', 'https://www.ajio.com/c/830202001', 'https://www.ajio.com/c/830205', 'https://www.ajio.com/c/830202002', 'https://www.ajio.com/c/830204003', 'https://www.ajio.com/c/men-capsule-collection', 'https://www.ajio.com/c/830212', 'https://www.ajio.com/c/830211', 'https://www.ajio.com/c/830211002', 'https://www.ajio.com/s/men-trunks-boxers', 'https://www.ajio.com/c/830211006', 'https://www.ajio.com/', 'https://www.ajio.com/s/eoss-men-impulse-steal-bags', 'https://www.ajio.com/s/mens-footwear-under-1499', 'https://www.ajio.com/s/jeans-under-1199', 'https://www.ajio.com/s/shorts-three-fourths-under-699', 'https://www.ajio.com/s/tees-clearance-sale', 'https://www.ajio.com/', 'https://www.ajio.com/', 'https://www.ajio.com/s/backpacks-and-utility-bags', 'https://www.ajio.com/c/men-brogues', 'https://www.ajio.com/s/cargos-chinos', 'https://www.ajio.com/s/men-shoe', 'https://www.ajio.com/c/men-denim-shirts-collection', 'https://www.ajio.com/c/graphic-shirts', 'https://www.ajio.com/c/830216003', 'https://www.ajio.com/c/Doubt-Is-Out', 'https://www.ajio.com/s/men-ajio-own-brand', 'https://www.ajio.com/s/international-brands-men', 'https://www.ajio.com/b/alcott', 'https://www.ajio.com/b/kaporal', 'https://www.ajio.com/b/native-youth', 'https://www.ajio.com/s/men-point-zero', 'https://www.ajio.com/b/tom-tailor', 'https://www.ajio.com/s/men-exclusive-brands', 'https://www.ajio.com/b/acuto', 'https://www.ajio.com/b/antiferro', 'https://www.ajio.com/s/men-dnmx-brand', 'https://www.ajio.com/b/funk', 'https://www.ajio.com/b/garcon', 'https://www.ajio.com/s/hats-off-accessories', 'https://www.ajio.com/b/netplay', 'https://www.ajio.com/b/piaffe', 'https://www.ajio.com/s/men-teamspirit-brand', 'https://www.ajio.com/c/830216', 'https://www.ajio.com/b/celio', 'https://www.ajio.com/s/duke-men', 'https://www.ajio.com/b/flying-machine', 'https://www.ajio.com/b/gas', 'https://www.ajio.com/b/indian-terrain', 'https://www.ajio.com/s/jack-jones-western-wear', 'https://www.ajio.com/b/john-players', 'https://www.ajio.com/s/men-killer-western-wear', 'https://www.ajio.com/s/men-lee', 'https://www.ajio.com/s/men-levis-western-wear', 'https://www.ajio.com/s/men-mark-spencer', 'https://www.ajio.com/s/pepe-jeans-men', 'https://www.ajio.com/b/spykar', 'https://www.ajio.com/s/united-colours-benetton', 'https://www.ajio.com/b/us-polo', 'https://www.ajio.com/s/men-wills-lifestyle', 'https://www.ajio.com/s/men-wrangler-western-wear', 'https://www.ajio.com/c/830211', 'https://www.ajio.com/s/hanes-innerwear-men', 'https://www.ajio.com/s/men-levis-innerwear', 'https://www.ajio.com/s/playboy-men', 'https://www.ajio.com/s/undercolors-of-benetton-innerwear', 'https://www.ajio.com/s/us-polo-innerwear', 'https://www.ajio.com/s/men-accessories-brands', 'https://www.ajio.com/s/men-eristonaman-accessories', 'https://www.ajio.com/s/flying-machine', 'https://www.ajio.com/b/mtv', 'https://www.ajio.com/s/puma-men-accessories', 'https://www.ajio.com/b/skybags', 'https://www.ajio.com/s/men-teakwood-leathers-accessories', 'https://www.ajio.com/s/tommy-hilfiger', 'https://www.ajio.com/s/men-us-polo-brand', 'https://www.ajio.com/s/men-wildcraft-accessories', 'https://www.ajio.com/s/men-wrangler-accessories', 'https://www.ajio.com/c/830207', 'https://www.ajio.com/s/men-carlton-london-footwear', 'https://www.ajio.com/s/crocs', 'https://www.ajio.com/s/famozi-footwear', 'https://www.ajio.com/b/knotty-derby', 'https://www.ajio.com/b/lee-cooper', 'https://www.ajio.com/b/modello-domani', 'https://www.ajio.com/b/muddman', 'https://www.ajio.com/s/men-puma-footwear-brand', 'https://www.ajio.com/b/red-tape', 'https://www.ajio.com/s/men-skechers-collection', 'https://www.ajio.com/b/sole-threads', 'https://www.ajio.com/s/men-ucb-footwear', 'https://www.ajio.com/s/men-vans-footwear', 'https://www.ajio.com/help/BrandListing'], 'WOMEN-SALE': ['asdf', 'ddd']}}
+
+
+      for key in categories_data:
+        r["cat_names"] = [key2 for key2 in categories_data[key]]
+      # cat_xpath = {}
+      #   for cat in categories_data[key]:
+      #     xpath = categories_data[key][cat]["xpath"]
+      #     cat_xpath[cat] = xpath
+      # r["cat_xpath"] = cat_xpath
+
+      # print(cat_xpath)
+      # print("ok=====")
+
+      print ("r",r)
+      request.session["page_1_data"] = r
+      
+      if bool(categories_data[request.POST.get("urlname" if website_type == "website" else "sitemap_urlname")]) == False:
         error = True
         if "page_1_data" in request.session:
           default_data = request.session["page_1_data"]
@@ -91,11 +145,27 @@ class AddWebsite(TemplateView):
       # print ("viewform",categories_data)
 
     if self.subpage == "2":
+
       r = request.POST.dict()
-      for cat in request.session["page_1_data"]["categories"]:
-        r[cat] = request.POST.getlist(cat)
-      request.session["page_2_data"] = r
-      self.template_name = "dashboard/websites/add_website_page_3.html"
+      if "verify" in r:
+        r_1 = request.session["page_1_data"]
+        r_1["xpath_forced"] = True
+        r_1["categorical_url_dict"] = request.POST.dict()
+        categories_data = viewform(r_1)
+        self.template_name = "dashboard/websites/add_website_page_2.html"
+
+      else:
+        # for cat in request.session["page_1_data"]["categories"]:
+        #   r[cat] = request.POST.getlist(cat)
+        #   print (cat)
+        # print (r)
+        # request.session["page_2_data"] = r
+        for cat in request.session["page_1_data"]["cat_names"]:
+          r[cat] = request.POST.getlist(cat)
+          print (cat)
+        print (r)
+        request.session["page_2_data"] = r
+        self.template_name = "dashboard/websites/add_website_page_3.html"
 
 
     if self.subpage == "3":
@@ -105,15 +175,30 @@ class AddWebsite(TemplateView):
       # print(request.session["page_3_data"])
       # return HttpResponse("asdf")
 
-      page_1_data = request.session['page_1_data'] 
+      page_1_data = request.session['page_1_data']
+      if "sitemap_urlname" in page_1_data:
+        page_1_data["urlname"] = page_1_data["sitemap_urlname"]
+        page_1_data["type"] = "sitemap"
+        page_1_data["categoryType"] = "sitemap"
       page_2_data = request.session['page_2_data'] 
       page_3_data = request.session['page_3_data'] 
       items = {'approach':"click"}
       listing_dict = {}
       product_dict = {}
 
-      listing_dict['product_title'] = {"xpath":page_3_data.get('xpath_product_title',''),"xpath_type":page_3_data.get('','')}
-      listing_dict['url'] = {"xpath":page_3_data.get('xpath_url',''),"xpath_type":page_3_data.get('type_url','')}
+      listing_dict['product_title'] = {"xpath":page_3_data.get('xpath_product_title_1',''),"xpath_type":page_3_data.get('type_product_title_1','')}
+      listing_dict["product_title"]["xpath2"] = page_3_data.get('xpath_product_title_2','')
+      listing_dict["product_title"]["xpath_type2"] = page_3_data.get('type_product_title_2','')
+
+
+      listing_dict["url"] = {}
+      if len(page_3_data.get('xpath_url',[]))>1:
+        listing_dict["url"]["xpath"] = page_3_data.get('xpath_url',[])
+        listing_dict["url"]["xpath2"] = page_3_data.get('xpath_url',[])
+        listing_dict["url"]["xpath_type"] = "href"
+        listing_dict["url"]["xpath_type2"] = "href"
+      else:
+        listing_dict['url'] = {"xpath":page_3_data.get('xpath_url',''),"xpath_type":page_3_data.get('type_url','')}
       listing_dict['image'] = {"xpath":page_3_data.get('xpath_image',''),"xpath_type":page_3_data.get('type_image','')}
       product_dict['product_name'] = {"xpath":page_3_data.get('xpath_product_name',''),"xpath_type":page_3_data.get('type_product_name','')}
       product_dict['product_id'] = {"xpath":page_3_data.get('xpath_product_id',''),"xpath_type":page_3_data.get('type_product_id','')}
@@ -135,8 +220,8 @@ class AddWebsite(TemplateView):
       paginate_parameters = {}
       pagination_type = page_3_data.get("paginationType","")
       if pagination_type:
-        paginate_parameters['scroll_time_wait'] = int(page_3_data.get("pagination_pause_time",5))
-        paginate_parameters['page_listing'] = int(page_3_data.get("pagination_items_per_page",20))
+        paginate_parameters['scroll_time_wait'] = int(page_3_data.get("pagination_pause_time",10))
+        paginate_parameters['page_listing'] = int(page_3_data.get("pagination_items_per_page",50))
         paginate_parameters["products_path_count"] = page_3_data.get("xpath_product_count")
         paginate_parameters['load_more_xpath'] = page_3_data.get("xpath_next_button","")
         page_1_data['pagination'] = {"type":pagination_type,"paginate_parameters":paginate_parameters}
@@ -144,7 +229,7 @@ class AddWebsite(TemplateView):
       # product_dict[''] = {"xpath":page_3_data.get('xpath_',''),"xpath_type":page_3_data.get('type_','')}
       items['fields'] = {'listing':listing_dict,'product':product_dict}
       items['xpath'] = page_3_data.get("items_xpath_1","")
-      items['xpath_2'] = page_3_data.get("items_xpath_2","")
+      items['xpath2'] = page_3_data.get("items_xpath_2","")
       categoryType = page_1_data.get("categoryType","")
       if "clickhover" in categoryType or "hover" in categoryType:
         items['hover'] = True

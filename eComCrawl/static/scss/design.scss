@@ -273,6 +273,7 @@ html, body {
 
       li {
         float: none;      
+        display: block;
         .checkbox {
           margin-right: 20px;
         }
@@ -280,6 +281,22 @@ html, body {
         label { 
           margin-bottom: 0;
           padding: 1rem;
+          width: calc(100% - 240px); 
+          // float: left;
+        }
+
+        .category_move {
+          float: right;
+          width: 200px;
+          margin-right: 20px;
+          margin-top: 5px;
+          margin-bottom: 0;
+          display: none;
+        }
+        &:hover {
+          .category_move {
+            display: block;
+          }
         }
       }
     }
@@ -535,4 +552,23 @@ h2 {
     float: right;
     font-size: 16px;
   }
+}
+
+.tabs {
+  .tabs-title {
+    a {
+      text-align: center;
+      min-width: 100px;
+      font-size: 13px;
+    }
+  }
+  .tabs-title > a:focus, 
+  .tabs-title > a[aria-selected='true'] {
+    font-weight: 700;
+    color: $primary;
+    border-bottom: 2px solid $primary;
+    outline: none;
+    background: $white;
+  }
+  
 }

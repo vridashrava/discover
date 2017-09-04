@@ -15,7 +15,7 @@
           </ul>
           <div class="tabs-content" data-tabs-content="WebsiteFormType">
             <div class="tabs-panel {% if not default_data.sitemap_urlname %}is-active{% endif %}" id="panelWebsite">
-              <form name="form2" method="POST" action="{% url 'add_website' %}" class="inline p30"> {% csrf_token %}
+              <form id="frmWebsite" name="form2" method="POST" action="{% url 'add_website' %}" class="inline p30"> {% csrf_token %}
               
               <div class="grid-container">
                 <div class="grid-x grid-padding-x align-middle">
@@ -31,7 +31,13 @@
                   <div class="cell medium-3"><label>Website URL:</label></div>
                   <div class="cell medium-9"><input type="text" name="url" value="{{default_data.url}}"></div>
                 </div>
-                <div class="grid-x grid-padding-x align-top">
+<!--                 <div class="grid-x grid-padding-x align-middle">
+                  <div class="cell medium-3"><label>Category Name XPATH</label></div>
+                  <div class="cell medium-6">
+                    <input id="txtXPathPrimary" type="text" name="xpath_primary" placeholder="XPath" value="{{default_data.xpath_primary}}">
+                  </div>
+                </div>
+ -->                <div class="grid-x grid-padding-x align-top">
                   <div class="cell medium-3"><label>Category Selection Type:</label></div>
                   <div class="cell medium-9">
                     <ul class="radio_container">
@@ -48,9 +54,11 @@
                         <label for="radioXPath"><div class="radio"></div>XPath</label>
                       </li>
                     </ul>
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title='<b>Hover</b><br>Explanation here.<hr><b>Click and Hover</b><br>Explanation here<hr><b>XPath</b><br>Explanation Here'>?</span>
+
                     <div class="grid-x grid-padding-x align-top" style="clear: both;">
                       <div class="cell medium-8">
-                        <input id="txtXPath" type="text" name="xpath" placeholder="XPath" value="{{default_data.xpath}}">
+                        <input id="txtXPath" type="text" name="xpath" placeholder="Click XPATH" value="{{default_data.xpath}}">
                       </div>
                       <div class="cell medium-4">
                         
@@ -75,19 +83,56 @@
                   </div>            
                 </div>
 
-                <div class="grid-x grid-padding-x align-middle">
+                <div class="grid-x grid-padding-x">
                   <div class="cell medium-3"><label>Type:</label></div>            
-                  <div class="cell medium-9"><input type="text" name="type"  value="{{default_data.type}}"></div>
+                  <div class="cell medium-8"><input type="text" name="type"  value="{{default_data.type}}"></div>
+                  <div class="cell medium-1">
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title='<b>Type of Crawl</b><br>Explanation Here'>?</span>
+                    
+                  </div>      
                 </div>
 
                 <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3"><label>Category Count:</label></div>            
+                  <div class="cell medium-6"><input type="text" name="category_count"  value=""></div>
+                  <div class="cell medium-3">
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title="Count of Categories">?</span>
+                  </div>
+                </div>
+
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3"><label>Category XPATH:</label></div>            
+                  <div class="cell medium-6"><input type="text" name="category_xpath" value=""></div>
+                  <div class="cell medium-3">
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title="XPATH of one of the categories.">?</span>
+                  </div>
+                </div>
+
+                <div id="BlockCategories" class="grid-x grid-padding-x" style="display: none;">
                   <div class="cell medium-3"><label>Categories:</label></div>
-                  <div id="categoryFieldsContainer" class="cell medium-6">
+                  <div  id="categoryFieldsContainer" class="cell medium-6">
                     {% for i in default_data.categories %}
-                    <input type="text" name="cat" placeholder=""  value="{{i}}">
+                      <div class="grid-x grid-padding-x">
+                        <div class="cell medium-8">
+                          <input type="text" name="cat" placeholder="XPATH"  value="{{i}}">
+                        </div>
+                        <div class="cell medium-3"></div>
+                        <div class="cell medium-1">
+                          <button type="button" class="button btnDeleteCategory">-</button>
+                        </div>
+                      </div>
                     {% empty %}
-                    <input type="text" name="cat" placeholder="">
+                      <div class="grid-x grid-padding-x">
+                        <div class="cell medium-8">
+                          <input type="text" name="cat" placeholder="XPATH">
+                        </div>
+                        <div class="cell medium-3"></div>
+                        <div class="cell medium-1">
+                          <button type="button" class="button btnDeleteCategory">-</button>
+                        </div>
+                      </div>
                     {% endfor %}
+                      
                   </div>
                   <div class="cell medium-3 align-self-bottom">
                     <button type="button" id="BtnAddCategory" class="button">+</button>
@@ -95,24 +140,15 @@
                 </div>
                 <div class="grid-x grid-padding-x">
                   <div class="cell medium-3"></div>
-                  <div class="cell medium-9"><a href="{% url "reset_new_website" %}" class="button">Reset</a> <button type="submit" class="button" name="submit">Submit</button></div>
+                  <div class="cell medium-9"><a href="{% url "reset_new_website" %}" class="button">Reset</a> <button type="button" class="button" name="submit" onclick="verifyGenerateCategories(this);">Verify</button> <button type="submit" class="button" name="submit">Submit</button></div>
                 </div>
               </div>
-
-
-
-
-
-
-
-
-
               </form>
 
 
             </div>
             <div class="tabs-panel {% if default_data.sitemap_urlname %}is-active{% endif %}" id="panelSiteMap">
-              <form name="form2" method="POST" action="{% url 'add_website' %}" class="inline p30"> {% csrf_token %}
+              <form id="frmWebsiteSiteMap" name="form2" method="POST" action="{% url 'add_website' %}" class="inline p30"> {% csrf_token %}
               
 
               <div class="grid-container">
@@ -121,15 +157,28 @@
                   <!-- add error class and error content if error -->
                   <div class="cell medium-9"><div class="error {% if error %}visible{% endif %}">Oops! We could not get the category from the site. Please provide the XPath instead.</div></div>
                 </div>
-                <div class="grid-x grid-padding-x align-middle">
+                <div class="grid-x grid-padding-x">
                   <div class="cell medium-3"><label>Website Name:</label></div>
-                  <div class="cell medium-9"><input type="text" name="sitemap_urlname" value="{{default_data.sitemap_urlname}}"></div>
+                  <div class="cell medium-8"><input type="text" name="sitemap_urlname" value="{{default_data.sitemap_urlname}}"></div>
+                  <div class="cell medium-1">
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title='<b>Name of Website</b>'>?</span>
+                  </div>
                 </div>
-                <div class="grid-x grid-padding-x align-middle">
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3"><label>URL:</label></div>
+                  <div class="cell medium-8"><input type="text" name="url" value="{{default_data.sitemap_url}}"></div>
+                  <div class="cell medium-1">
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title='<b>Full url of the sitemap</b>'>?</span>
+                  </div>
+                </div>
+                <div class="grid-x grid-padding-x">
                   <div class="cell medium-3"><label>SiteMap URL:</label></div>
-                  <div class="cell medium-9"><input type="text" name="sitemap_url" value="{{default_data.sitemap_url}}"></div>
+                  <div class="cell medium-8"><input type="text" name="sitemap_url" value="{{default_data.sitemap_url}}"></div>
+                  <div class="cell medium-1">
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title='<b>Full url of the sitemap</b>'>?</span>
+                  </div>
                 </div>
-                <div class="grid-x grid-padding-x align-top">
+                <div class="grid-x grid-padding-x align-top" style="display: none;">
                   <div class="cell medium-3"><label>Crawl Type:</label></div>
                   <div class="cell medium-9">
                     <ul class="radio_container">
@@ -144,9 +193,46 @@
                     </ul>
                   </div>
                 </div>
+                
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3"><label>Category Count:</label></div>            
+                  <div class="cell medium-6"><input type="text" name="category_count"  value=""></div>
+                  <div class="cell medium-3">
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title="Count of Categories">?</span>
+                  </div>
+                </div>
+
+                <div class="grid-x grid-padding-x">
+                  <div class="cell medium-3"><label>Category XPATH:</label></div>            
+                  <div class="cell medium-6"><input type="text" name="category_xpath" value=""></div>
+                  <div class="cell medium-3">
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title="XPATH of one of the categories.">?</span>
+                  </div>
+                </div>
+
+
+                <div id="BlockCategoriesSiteMap" class="grid-x grid-padding-x" style="display: none;">
+                  <div class="cell medium-3"><label>Categories and Urls XPATHs</label></div>
+                  <div class="cell medium-8">
+                    <div id="SiteMapCategoriesContainer">
+                      <div class="grid-x grid-padding-x">
+                        <div class="cell medium-6"><input type="text" name="sitemap_xpath_category" value="" placeholder="XPATH of Category Title"></div>
+                        <div class="cell medium-5"><input type="text" name="sitemap_xpath_url" value="" placeholder="XPATH of Category url"></div>
+                        <div class="cell medium-1">
+                          <button type="button" class="button" onclick="removeSiteMapCategory(this);">-</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cell medium-1 align-self-bottom">
+                    <button type="button" id="BtnAddSiteMapCategories" class="button">+</button>
+                    <span data-allow-html="true" data-tooltip aria-haspopup="true" class="label-tool-tip has-tip" data-disable-hover="false" tabindex="1" title='<b>Xpath of Category Title</b><br>Xpath of main category title.<hr><b>XPATH of Category Url:</b><br>Xpath of one of the urls inside category.' style="margin-top: -16px;">?</span>
+ 
+                  </div>
+                </div>
                 <div class="grid-x grid-padding-x">
                   <div class="cell medium-3"></div>
-                  <div class="cell medium-9"><a href="{% url "reset_new_website" %}" class="button">Reset</a> <button type="submit" class="button" name="submit">Submit</button></div>
+                  <div class="cell medium-9"><a href="{% url "reset_new_website" %}" class="button">Reset</a>  <button type="button" class="button" name="submit" onclick="verifyGenerateCategoriesSiteMap(this);">Verify</button>  <button type="submit" class="button" name="submit" value="sitemap">Submit</button></div>
                   
                 </div>
               </div>
@@ -168,11 +254,23 @@
 {% block scripts %}
 {{ block.super }}
   <!-- <script src= "{% static "js/form.js" %}"></script> -->
+  <script src= "{% static "js/jquery.form.min.js" %}"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
       $("#BtnAddCategory").click(function() {
-        $("#categoryFieldsContainer").append('<input type="text" name="cat" placeholder="">');
+        // $("#categoryFieldsContainer").append('<input type="text" name="cat" placeholder="">');
+        $("#categoryFieldsContainer").append('<div class="grid-x grid-padding-x"><div class="cell medium-8"><input type="text" name="cat" placeholder="XPATH"></div><div class="cell medium-3"></div><div class="cell medium-1"><button type="button" class="button btnDeleteCategory" onclick="removeCat(this);">-</button></div></div>');
+      });
+
+      $("#BtnAddSiteMapCategories").click(function() {
+        // $("#SiteMapCategoriesContainer").append('<div class="grid-x grid-padding-x"><div class="cell medium-6"><input type="text" name="sitemap_xpath_category" value="" placeholder="XPATH of Category Title"></div> <div class="cell medium-5"><input type="text" name="sitemap_xpath_url" value="" placeholder="XPATH of Category url"></div> <div class="cell medium-1"><button type="button" id="BtnRemoveSiteMapCategories" class="button" onclick="removeSiteMapCategory(this);">-</button></div></div>');
+
+        var cnt = $("#SiteMapCategoriesContainer").children().length + 1;
+        var cat = "";
+        $("#SiteMapCategoriesContainer").append('<div class="grid-x grid-padding-x"><div class="cell medium-4"><input type="text" name="sitemap_category_name_' + cnt + '" value="' + cat + '" placeholder="Category Name"></div><div class="cell medium-5"><input type="text" name="sitemap_xpath_category_' + cnt + '" value="" placeholder="XPATH of Category Title"></div> <div class="cell medium-2"><input type="text" name="sitemap_sub_cat_count_' + cnt + '" value="" placeholder="Count"></div><div class="cell medium-1"><button type="button" id="BtnRemoveSiteMapCategories" class="button" onclick="removeSiteMapCategory(this);">-</button></div></div>');
+        
+
       });
 
      var category_type = "{{default_data.categoryType}}";
@@ -198,6 +296,67 @@
 
     });
 
+
+    function verifyGenerateCategories(e) {
+      $("#frmWebsite").ajaxSubmit({
+        url: "{% url 'add_website_generate_categories' %}",
+        type: 'post',
+        success:  function(response) {
+          $(e).remove();
+          $("#BlockCategories").show();
+          // console.log(response);
+          var categories = JSON.parse(response);
+          $("#categoryFieldsContainer").empty();
+          var cnt = 0;
+          for (var cat in categories) {
+            cnt += 1;
+            $("#categoryFieldsContainer").append('<div class="grid-x grid-padding-x"><div class="cell medium-8"><input type="text" name="cat" placeholder="XPATH" value="' + categories[cat] + '"></div><div class="cell medium-3"><span>' + cat + '</span></div><div class="cell medium-1"><button type="button" class="button btnDeleteCategory" onclick="removeCat(this);">-</button></div></div>');
+          }
+          if (cnt == 0) {
+            $("#categoryFieldsContainer").append('<div class="grid-x grid-padding-x"><div class="cell medium-8"><input type="text" name="cat" placeholder="XPATH"></div><div class="cell medium-3"><span></span></div><div class="cell medium-1"><button type="button" class="button btnDeleteCategory" onclick="removeCat(this);">-</button></div></div>');
+          }
+        }
+      });
+    }
+
+
+    function verifyGenerateCategoriesSiteMap(e) {
+      $("#frmWebsiteSiteMap").ajaxSubmit({
+        url: "{% url 'add_website_generate_categories_sitemap' %}",
+        type: 'post',
+        success:  function(response) {
+          $(e).remove();
+          $("#BlockCategoriesSiteMap").show();
+          // console.log(response);
+          var categories = JSON.parse(response);
+          $("#SiteMapCategoriesContainer").empty();
+          var cnt = 0;
+          for (var cat in categories) {
+            cnt += 1;
+            $("#SiteMapCategoriesContainer").append('<div class="grid-x grid-padding-x"><div class="cell medium-4"><input type="text" name="sitemap_category_name_' + cnt + '" value="' + cat + '" placeholder="Category Name"></div><div class="cell medium-5"><input type="text" name="sitemap_xpath_category_' + cnt + '" value="'+ categories[cat] +'" placeholder="XPATH of Category Title"></div> <div class="cell medium-2"><input type="text" name="sitemap_sub_cat_count_' + cnt + '" value="" placeholder="Count"></div><div class="cell medium-1"><button type="button" id="BtnRemoveSiteMapCategories" class="button" onclick="removeSiteMapCategory(this);">-</button></div></div>');
+
+            // $("#categoryFieldsContainer").append('<div class="grid-x grid-padding-x"><div class="cell medium-8"><input type="text" name="cat" placeholder="XPATH" value="' + categories[cat] + '"></div><div class="cell medium-3"><span>' + cat + '</span></div><div class="cell medium-1"><button type="button" class="button btnDeleteCategory" onclick="removeCat(this);">-</button></div></div>');
+          }
+          if (cnt == 0) {
+            // $("#categoryFieldsContainer").append('<div class="grid-x grid-padding-x"><div class="cell medium-8"><input type="text" name="cat" placeholder="XPATH"></div><div class="cell medium-3"><span></span></div><div class="cell medium-1"><button type="button" class="button btnDeleteCategory" onclick="removeCat(this);">-</button></div></div>');
+
+          }
+        }
+      });
+    }
+
+
+
+    function removeCat(e) {
+      e = $(e);
+      
+      e.parent().parent().remove();
+    }
+
+    function removeSiteMapCategory(e) {
+      e = $(e);
+      e.parent().parent().remove();
+    }
   </script>
 
 {% endblock %}

@@ -1,0 +1,119 @@
+{
+    "urlname": "abof",
+    "category_xpath": "//*[@id=\"abofApp\"]/div/div[1]/div/div[2]/div/div[3]/div/div/div/div/ul/li[2]/a",
+    "xpath": "",
+    "submit": "",
+    "cat_names": [
+        "WOMEN",
+        "MEN"
+    ],
+    "categoryType": "hover",
+    "items": {
+        "xpath_2": "",
+        "approach": "click",
+        "hover": true,
+        "fields": {
+            "product": {
+                "shipping_charge": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "images": {
+                    "xpath_type": "src",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[2]/div[1]/div/div[2]/div[2]/div[2]/img"
+                },
+                "product_name": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[2]/div[2]/div/h1"
+                },
+                "breadcrumb": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[1]/ul"
+                },
+                "rating": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[2]/div[2]/div/div[3]/div/p/strong"
+                },
+                "product_id": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-detail\"]/div[2]/div/div/ul/li[4]/div"
+                },
+                "delivery_time": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "review_url": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "material": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "sizes": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[2]/div[2]/div/div[5]/ul"
+                },
+                "description": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"product-detail\"]/div[2]/div/div/ul/li[2]/ul"
+                },
+                "thumbnail": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "color": {
+                    "xpath_type": "style",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[2]/div[2]/div/div[4]/div[2]/ul/li/a"
+                },
+                "specifications": {
+                    "xpath_type": "html",
+                    "xpath": "//*[@id=\"product-detail\"]/div[2]/div/div/ul/li[1]/ul"
+                },
+                "mrp": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[2]/div[2]/div/div[2]/div[2]"
+                },
+                "selling_price": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[2]/div[2]/div/div[2]/div[1]"
+                },
+                "discount": {
+                    "xpath_type": "text",
+                    "xpath": "//*[@id=\"product-detail\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]"
+                }
+            },
+            "listing": {
+                "url": {
+                    "xpath_type": "href",
+                    "xpath": "//a[2]"
+                },
+                "product_title": {
+                    "xpath_type": "",
+                    "xpath": ""
+                },
+                "image": {
+                    "xpath_type": "",
+                    "xpath": ""
+                }
+            }
+        },
+        "xpath": "//*[@id=\"productListUl\"]/span/div[@class=\"product\"]"
+    },
+    "type": "category",
+    "categories": [
+        "/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div/div/div/div/ul/li[2]/a",
+        "/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div/div/div/div/ul/li[3]/a"
+    ],
+    "url": "http://www.abof.com/",
+    "pagination": {
+        "paginate_parameters": {
+            "load_more_xpath": "",
+            "products_path_count": "//*[@id=\"abofApp\"]/div/div[2]/div[4]/div/h3/span[2]",
+            "scroll_time_wait": 15,
+            "page_listing": 24
+        },
+        "type": "infinite_scroll"
+    },
+    "category_count": "2"
+}
